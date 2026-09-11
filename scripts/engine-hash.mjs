@@ -19,10 +19,7 @@ const SHARED_DIRS = [
   "public/fonts",
 ];
 
-const SHARED_FILES = [
-  "src/root.tsx",
-  "src/routes.ts",
-];
+const SHARED_FILES = ["src/root.tsx", "src/routes.ts"];
 
 function sha256(filePath) {
   const buffer = fs.readFileSync(filePath);
@@ -107,11 +104,15 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     }
 
     if (diffs.length > 0) {
-      console.error(`FAIL: Parity drift detected between ${projectRoot} and ${targetDir} (${diffs.length} differences):`);
+      console.error(
+        `FAIL: Parity drift detected between ${projectRoot} and ${targetDir} (${diffs.length} differences):`,
+      );
       for (const d of diffs) console.error(`  - ${d}`);
       process.exit(1);
     } else {
-      console.log(`PASS: Engine byte-identical with ${path.basename(targetDir)} (${current.fileCount} files, SHA-256: ${current.cumulative.slice(0, 16)}...)`);
+      console.log(
+        `PASS: Engine byte-identical with ${path.basename(targetDir)} (${current.fileCount} files, SHA-256: ${current.cumulative.slice(0, 16)}...)`,
+      );
       process.exit(0);
     }
   }
