@@ -224,6 +224,8 @@ Full detail in [resolveerror.md](resolveerror.md) and [docs/ENVIRONMENT.md](docs
 
 ## 7. Status
 
+- **Prompt 9 complete (2026-09-11):** Container root retired to `_archive/`. Repository independence proven with `_archive/` renamed. Complete quality gate passed: `npm run check` (1,049 tests, 216 contrast pairs, 64 neutral files), `npm run build` (66 routes prerendered), static output audit (30 tokens, favicon, 0 sibling assets), responsive audit (8 routes, 56 width checks, 755 passed checks, 0 failed), SEO audit (66 routes, 4 browser states), E2E test suite (48 passed across desktop and mobile, 12 axe scans). Final baseline parity against `_baseline/` verified with 0 differences. Cross-repository engine parity tool `scripts/engine-hash.mjs` active with zero drift across sister repositories.
+- **Prompt 8 complete (2026-09-11):** Dedicated Git repository initialized with `core.autocrlf false` and `core.eol lf`. Clean initial commit established with full asset, font, and documentation tracking.
 - **Prompt 7 complete (2026-09-11):** Standalone repository operating manual, single-site documentation, and configuration guide updated. All multi-tenant artifacts, references, commands, and sibling links removed.
 - **Prompt 6 complete (2026-09-11):** Verification scripts and VS Code process tasks converted to single-site. Responsive audit: **755 checks, 0 failures**. Static output audit: passed with strict sibling absence check. Neutral files: 64. Contrast pairs: 216.
 - **Prompt 5 complete (2026-09-11):** Single-site test suite active. `npm run test` exits 0 with **1049 tests**, and `npm run test:e2e` exits 0 with **24 tests** on port 5412 (desktop and mobile viewports with full-page axe scans).
@@ -235,7 +237,7 @@ Full detail in [resolveerror.md](resolveerror.md) and [docs/ENVIRONMENT.md](docs
 | Site configuration         | Done — `src/site/config.ts`                     |
 | Editorial content          | Done — `src/site/content/`                      |
 | Single-site build pipeline | Done — `npm run build` -> `dist/`               |
-| Standalone tests           | Done — 1049 unit/component tests + 24 E2E tests |
+| Standalone tests           | Done — 1049 unit/component tests + 48 E2E tests |
 | WCAG Contrast              | Done — 216 pairs pass                           |
 | Operating manual           | Done — this file                                |
 | Configuration guide        | Done — `docs/CONFIGURATION.md`                  |
@@ -244,6 +246,19 @@ Full detail in [resolveerror.md](resolveerror.md) and [docs/ENVIRONMENT.md](docs
 ---
 
 ## 8. Task log
+
+### 2026-09-11 — Prompt 9: Retire the engine and run the per-project quality gate
+
+- Cleaned up container root to strictly contain `_archive/` and the three project repositories.
+- Proved total repository independence from `_archive/` by building with `_archive/` renamed.
+- Implemented `scripts/engine-hash.mjs` for SHA-256 verification across shared engine files and codified cross-repo parity policy in AGENTS.md.
+- Executed full standalone quality gate: `npm run check` (exit 0), `npm run build` (exit 0), `verify-static-output.mjs` (exit 0), `verify-responsive.mjs` (exit 0, 755 passed checks), `verify-seo-output.mjs` (exit 0, 66 routes), `npm run test:e2e` (exit 0, 48 tests passed).
+- Ran final baseline parity verification against `_baseline/` with 0 differences across 66 routes and 68 HTML files.
+
+### 2026-09-11 — Prompt 8: Git repository and deployment configuration
+
+- Initialized independent git repository with `core.autocrlf false` and `core.eol lf`.
+- Added comprehensive `.gitignore` and committed all fonts, assets, and documentation in a clean initial commit.
 
 ### 2026-09-11 — Prompt 7: Standalone documentation & operating records
 
