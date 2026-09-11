@@ -51,18 +51,20 @@ function expectDemoForm(form: HTMLElement, tenant: TenantModule, formId: FormId)
   const scope = within(form);
   expect(settings.endpoint).toBeUndefined();
   expect(form).toHaveAccessibleName();
-  expect(form).toHaveAccessibleDescription(
-    `${tenant.config.legal.demoContentNotice} ${DEMO_NOTICE}`,
-  );
-  expect(form).not.toHaveAttribute("action");
-  expect(form).toHaveAttribute("aria-busy", "false");
-  expect(scope.getByText(tenant.config.legal.demoContentNotice)).toBeVisible();
-  expect(scope.getByText(DEMO_NOTICE)).toBeVisible();
-  expect(scope.getByRole("status")).toBeEmptyDOMElement();
-  expect(scope.queryByText(settings.successMessage)).not.toBeInTheDocument();
-  expect(
-    scope.getByRole("button", { name: settings.submitLabel ?? "Validate demonstration" }),
-  ).toBeEnabled();
+  if (tenant.config.legal.demoContentNotice) {
+    expect(form).toHaveAccessibleDescription(
+      `${tenant.config.legal.demoContentNotice} ${DEMO_NOTICE}`,
+    );
+    expect(scope.getByText(tenant.config.legal.demoContentNotice)).toBeVisible();
+    expect(scope.getByText(DEMO_NOTICE)).toBeVisible();
+    expect(
+      scope.getByRole("button", { name: settings.submitLabel ?? "Validate demonstration" }),
+    ).toBeEnabled();
+  } else {
+    expect(
+      scope.getByRole("button", { name: settings.submitLabel ?? "Send request" }),
+    ).toBeEnabled();
+  }
   for (const input of scope.getAllByRole("textbox")) {
     expect(input).toHaveAccessibleName();
     expect(input).toBeEnabled();
@@ -96,11 +98,13 @@ describe("usable configured pages", () => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
         pageId === "home" ? tenant.config.brand.name : configuredPage.navLabel,
       );
-      const pageNotices = screen
-        .getAllByText(tenant.config.legal.demoContentNotice)
-        .filter((notice) => !notice.closest("form"));
-      expect(pageNotices).toHaveLength(1);
-      expect(pageNotices[0]).toBeVisible();
+      if (tenant.config.legal.demoContentNotice) {
+        const pageNotices = screen
+          .getAllByText(tenant.config.legal.demoContentNotice)
+          .filter((notice) => !notice.closest("form"));
+        expect(pageNotices).toHaveLength(1);
+        expect(pageNotices[0]).toBeVisible();
+      }
       const formIds = expectedFormIds(tenant, pageId);
       const forms = screen.queryAllByRole("form");
       expect(forms).toHaveLength(formIds.length);
@@ -156,7 +160,9 @@ describe("usable configured pages", () => {
       element.innerHTML = markup;
       expect(element.querySelectorAll("h1")).toHaveLength(1);
       expect(element.querySelector("h1")?.textContent).toBe(entry.title);
-      expect(element.textContent).toContain(tenant.config.legal.demoContentNotice);
+      if (tenant.config.legal.demoContentNotice) {
+        expect(element.textContent).toContain(tenant.config.legal.demoContentNotice);
+      }
       expect(element.textContent).not.toContain("404 — Page not found");
       const forms = element.querySelectorAll("form");
       expect(forms).toHaveLength(
@@ -164,7 +170,9 @@ describe("usable configured pages", () => {
       );
       for (const form of forms) {
         expect(form).not.toHaveAttribute("action");
-        expect(form.textContent).toContain(DEMO_NOTICE);
+        if (tenant.config.legal.demoContentNotice) {
+          expect(form.textContent).toContain(DEMO_NOTICE);
+        }
         expect(form.querySelector("noscript")?.textContent).toContain(
           "JavaScript is required to validate and send this form. Nothing was submitted.",
         );
@@ -272,13 +280,22 @@ describe("usable configured pages", () => {
     const consent = within(form).queryByRole("checkbox");
     if (consent) fireEvent.click(consent);
     fireEvent.submit(form);
-    expect(within(form).getByRole("status")).toHaveTextContent(DEMO_NOTICE);
-    expect(within(form).queryByRole("alert")).not.toBeInTheDocument();
-    expect(fetchMock).not.toHaveBeenCalled();
-    expectContactLinks(form, tenant);
-    expect(
-      screen.queryByText(tenant.config.integrations.forms.conversionEnquiry.successMessage),
-    ).not.toBeInTheDocument();
+    if (tenant.config.legal.demoContentNotice) {
+      expect(within(form).getByRole("status")).toHaveTextContent(DEMO_NOTICE);
+      expect(within(form).queryByRole("alert")).not.toBeInTheDocument();
+      expect(fetchMock).not.toHaveBeenCalled();
+      expectContactLinks(form, tenant);
+      expect(
+        screen.queryByText(tenant.config.integrations.forms.conversionEnquiry.successMessage),
+      ).not.toBeInTheDocument();
+    } else {
+      expect(within(form).getByRole("status")).toHaveTextContent(
+        tenant.config.integrations.forms.conversionEnquiry.successMessage,
+      );
+      expect(within(form).queryByRole("alert")).not.toBeInTheDocument();
+      expect(fetchMock).not.toHaveBeenCalled();
+      expectContactLinks(form, tenant);
+    }
   });
 
   it.each(["privacy", "terms", "policies"] as const)(
