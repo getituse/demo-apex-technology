@@ -24,7 +24,9 @@ export function createStructuredData(
     name: config.brand.name,
     url: homeUrl,
     logo: absoluteSiteUrl(config.siteUrl, config.brand.logo),
-    description: `${config.brand.description} ${config.legal.demoContentNotice}`,
+    description: config.legal.demoContentNotice
+      ? `${config.brand.description} ${config.legal.demoContentNotice}`
+      : config.brand.description,
     email: config.contact.email,
     telephone: config.contact.phone,
     address: {

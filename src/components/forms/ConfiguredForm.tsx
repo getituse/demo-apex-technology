@@ -252,7 +252,7 @@ function FormSession({
   }
 
   function reset() {
-    if (status !== "success") return;
+    if (status !== "success" && !(status === "demo" && !config.legal.demoContentNotice)) return;
     formRef.current?.reset();
     locked.current = false;
     setErrors([]);
@@ -275,8 +275,8 @@ function FormSession({
         {title}
       </p>
       <div id={`${baseId}-notice`} className="space-y-2 text-sm text-muted-foreground">
-        <p>{config.legal.demoContentNotice}</p>
-        {!settings.endpoint ? <p>{DEMO_NOTICE}</p> : null}
+        {config.legal.demoContentNotice ? <p>{config.legal.demoContentNotice}</p> : null}
+        {!settings.endpoint && config.legal.demoContentNotice ? <p>{DEMO_NOTICE}</p> : null}
       </div>
       {settings.endpoint && settings.method === "GET" ? (
         <p id={`${baseId}-get-warning`} className="text-sm text-muted-foreground">
@@ -384,13 +384,17 @@ function FormSession({
           {busy
             ? "Sending…"
             : settings.submitLabel ||
-              (settings.endpoint ? "Send request" : "Validate demonstration")}
+              (settings.endpoint || !config.legal.demoContentNotice
+                ? "Send request"
+                : "Validate demonstration")}
         </Button>
       </fieldset>
       <div role="status" aria-live="polite" aria-atomic="true">
         {busy ? "Sending your request…" : null}
-        {status === "success" ? settings.successMessage : null}
-        {status === "demo" ? DEMO_NOTICE : null}
+        {status === "success" || (status === "demo" && !config.legal.demoContentNotice)
+          ? settings.successMessage
+          : null}
+        {status === "demo" && config.legal.demoContentNotice ? DEMO_NOTICE : null}
       </div>
       {status === "error" || status === "blocked" ? (
         <div role="alert" className="space-y-2 text-sm text-destructive">
@@ -400,7 +404,9 @@ function FormSession({
           ) : null}
         </div>
       ) : null}
-      {status === "success" ? <Button onClick={reset}>Start another request</Button> : null}
+      {status === "success" || (status === "demo" && !config.legal.demoContentNotice) ? (
+        <Button onClick={reset}>Start another request</Button>
+      ) : null}
       <div className="space-y-2">
         <p className="font-medium">Other contact options</p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2">

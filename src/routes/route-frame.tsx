@@ -47,7 +47,9 @@ export function PageFrame({
           ) : null}
         </div>
       ) : null}
-      <Notice title="Demonstration content">{config.legal.demoContentNotice}</Notice>
+      {config.legal.demoContentNotice ? (
+        <Notice title="Demonstration content">{config.legal.demoContentNotice}</Notice>
+      ) : null}
     </header>
   );
 

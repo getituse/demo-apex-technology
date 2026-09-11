@@ -15,7 +15,11 @@ const ALL_PROJECTS = ["greenfield-school", "apex-technology", "northstar-academy
 const siblings = ALL_PROJECTS.filter((id) => id !== currentId);
 
 const BRAND_PATTERNS = {
-  "greenfield-school": ["Greenfield International", "greenfield-school", "tenants/greenfield-school"],
+  "greenfield-school": [
+    "Greenfield International",
+    "greenfield-school",
+    "tenants/greenfield-school",
+  ],
   "apex-technology": ["Apex Institute", "apex-technology", "tenants/apex-technology"],
   "northstar-academy": ["Northstar Business", "northstar-academy", "tenants/northstar-academy"],
 };
@@ -64,7 +68,10 @@ try {
 
   // Listing check
   const listingRel = config.pages.programs.path.replace(/^\//, "");
-  assert(fs.existsSync(path.join(distDir, listingRel, "index.html")), `Listing page ${listingRel} must exist`);
+  assert(
+    fs.existsSync(path.join(distDir, listingRel, "index.html")),
+    `Listing page ${listingRel} must exist`,
+  );
   const listingHtml = fs.readFileSync(path.join(distDir, listingRel, "index.html"), "utf8");
   assert(listingHtml.includes("<h1"), `Listing page ${listingRel} must contain <h1>`);
 
@@ -77,10 +84,18 @@ try {
     fs.existsSync(path.join(distDir, detailRel, detailDir.name, "index.html")),
     `Detail page ${detailRel}/${detailDir.name} must exist`,
   );
-  const detailHtml = fs.readFileSync(path.join(distDir, detailRel, detailDir.name, "index.html"), "utf8");
-  assert(detailHtml.includes("<h1"), `Detail page ${detailRel}/${detailDir.name} must contain <h1>`);
+  const detailHtml = fs.readFileSync(
+    path.join(distDir, detailRel, detailDir.name, "index.html"),
+    "utf8",
+  );
+  assert(
+    detailHtml.includes("<h1"),
+    `Detail page ${detailRel}/${detailDir.name} must contain <h1>`,
+  );
 
-  console.log(`PASS verified home (/), listing (/${listingRel}), detail (/${detailRel}/${detailDir.name})`);
+  console.log(
+    `PASS verified home (/), listing (/${listingRel}), detail (/${detailRel}/${detailDir.name})`,
+  );
 
   // 4. Grep dist/ and src/ for sibling references
   console.log("Checking for cross-tenant contamination in dist/ and src/...");
@@ -112,7 +127,11 @@ try {
   scanDir(path.join(projectRoot, "dist"));
   scanDir(path.join(projectRoot, "src"));
 
-  assert.equal(violations.length, 0, `Forbidden sibling patterns found: ${JSON.stringify(violations, null, 2)}`);
+  assert.equal(
+    violations.length,
+    0,
+    `Forbidden sibling patterns found: ${JSON.stringify(violations, null, 2)}`,
+  );
   console.log(`PASS 0 sibling references found across ${forbiddenPatterns.length} patterns`);
 
   // Write audit report
@@ -127,8 +146,10 @@ try {
     ok: true,
   };
   fs.mkdirSync(path.join(projectRoot, "build"), { recursive: true });
-  fs.writeFileSync(path.join(projectRoot, "build", "isolation-audit.json"), JSON.stringify(audit, null, 2));
-
+  fs.writeFileSync(
+    path.join(projectRoot, "build", "isolation-audit.json"),
+    JSON.stringify(audit, null, 2),
+  );
 } finally {
   // Always restore renamed items
   for (const { original, temp } of renamedItems) {
