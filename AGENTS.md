@@ -58,9 +58,26 @@ _Note:_ The original multi-tenant engine specifications (`complete_details.md`, 
 - No file under `src/components/` or `src/sections/` may contain a tenant name, or the literals _school_, _student_, _admission_, _faculty_, _campus_. Those words come from site `terminology` config.
 - Enforced by `scripts/check-tenant-neutral.mjs`, wired into `npm run lint`. Do not weaken it.
 
-**Cross-repository parity (from Prompt 9)**
+**Cross-repository parity policy**
 
-- A repackaging must not change a rendered page. Any shared-component, design-token or core routing change in one repository must be evaluated for parity across all three sister repositories before committing.
+- The shared engine directories (`src/components/`, `src/sections/`, `src/routes/`, `src/lib/`, `src/themes/`, `src/hooks/`, `src/styles/`, `src/config/`, `scripts/`, `public/fonts/`, and `src/root.tsx`, `src/routes.ts`) are **150 files byte-identical** across the three standalone repositories.
+- A fix or modification to any shared engine component or script in one repository **must be applied to all three repositories**.
+- `node scripts/engine-hash.mjs` prints the SHA-256 manifest and cumulative digest of all shared engine files.
+- `node scripts/engine-hash.mjs --verify=<path-to-sister-repo>` verifies parity against a sister repository in one command (exit 0 on match, exit 1 with diff on drift).
+- **Copy procedure for shared engine changes:**
+  1. Apply and test the change in the originating repository.
+  2. Copy the changed files to the matching relative paths in the sister repositories:
+     ```bash
+     # Example: copying a modified button primitive to sister repos
+     cp src/components/ui/Button.tsx ../<sister-repo-1>/src/components/ui/Button.tsx
+     cp src/components/ui/Button.tsx ../<sister-repo-2>/src/components/ui/Button.tsx
+     ```
+  3. Verify byte-identity across all repositories:
+     ```bash
+     node scripts/engine-hash.mjs --verify=../<sister-repo-1>
+     node scripts/engine-hash.mjs --verify=../<sister-repo-2>
+     ```
+  4. Run `npm run check` in each sister repository to ensure no tenant neutrality or test regressions occurred.
 
 **Styling**
 
