@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.react-router/
+coverage/
+playwright-report/
+test-results/
+package-lock.json
+
+# Vendored UI UX Pro Max skill — not our code, do not reformat.
+.github/prompts/
+

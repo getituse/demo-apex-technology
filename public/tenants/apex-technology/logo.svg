@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="96" viewBox="0 0 420 96" role="img" aria-labelledby="title description">
+  <title id="title">Apex Institute of Technology — demo logo</title>
+  <desc id="description">Original demo artwork for a fictional organisation. Not a photograph of real premises, people or an accreditation. Replace with approved customer artwork before launch.</desc>
+  <g transform="translate(12 16)"><g fill="none" stroke="hsl(0 0% 12%)" stroke-width="4" stroke-linecap="square">
+      <path d="M14 49 L32 15 L50 49 M23 36 H41 M26 49 L32 38 L38 49"/>
+    </g></g>
+          <text x="94" y="47" fill="hsl(0 0% 12%)" font-family="&quot;Palatino Linotype&quot;, &quot;Book Antiqua&quot;, Palatino, Georgia, serif" font-size="36" font-weight="700">Apex</text>
+          <text x="95" y="72" fill="hsl(0 0% 12%)" font-family="system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Arial, sans-serif" font-size="14" letter-spacing="1">Institute of Technology</text>
+</svg>

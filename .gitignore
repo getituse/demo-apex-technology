@@ -1,0 +1,22 @@
+node_modules/
+dist/
+build/
+.react-router/
+coverage/
+playwright-report/
+test-results/
+logs/
+_baseline/
+
+# UI UX Pro Max sub-skills ship Python scripts; keep their caches out of git.
+.github/prompts/**/__pycache__/
+
+*.local
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*

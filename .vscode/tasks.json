@@ -1,0 +1,169 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Quality gate",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/project-cli.mjs", "check"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Build production site",
+      "type": "process",
+      "command": "node",
+      "args": ["node_modules/@react-router/dev/bin.js", "build"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Dev site (port 5412)",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "node_modules/@react-router/dev/bin.js",
+        "dev",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5412"
+      ],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Preview production site (port 5412)",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "node_modules/vite/bin/vite.js",
+        "preview",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5412",
+        "--outDir",
+        "dist"
+      ],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Validate TypeScript",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/project-cli.mjs", "typecheck"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$tsc"],
+      "group": "test"
+    },
+    {
+      "label": "Validate lint",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/project-cli.mjs", "lint"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$eslint-stylish"],
+      "group": "test"
+    },
+    {
+      "label": "Check theme contrast",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/check-contrast.mjs"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Test unit and components (vitest)",
+      "type": "process",
+      "command": "node",
+      "args": ["node_modules/vitest/vitest.mjs", "run"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Test production E2E (Playwright)",
+      "type": "process",
+      "command": "node",
+      "args": ["node_modules/@playwright/test/cli.js", "test"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Verify static output",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/verify-static-output.mjs"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Verify SEO output",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/verify-seo-output.mjs"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Verify responsive layouts",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/verify-responsive.mjs"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Verify public pages",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/verify-public-pages.mjs"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Format code",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/project-cli.mjs", "format"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Format check",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/project-cli.mjs", "format:check"],
+      "windows": { "command": "C:\\Users\\Admin\\AppData\\Local\\Programs\\nodejs\\node.exe" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

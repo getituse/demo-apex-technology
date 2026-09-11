@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title description">
+  <title id="title">Apex — demo illustration</title>
+  <desc id="description">Original demo artwork for a fictional organisation. Not a photograph of real premises, people or an accreditation. Replace with approved customer artwork before launch.</desc>
+  <rect width="1200" height="900" fill="hsl(30 20% 97%)"/>
+      <rect x="160" y="130" width="880" height="630" fill="hsl(30 22% 94%)"/>
+      <path d="M245 710 V315 L600 165 L955 315 V710 Z" fill="hsl(38 45% 68%)"/>
+      <path d="M310 710 V400 A290 210 0 0 1 890 400 V710 Z" fill="hsl(345 60% 24%)"/>
+      <path d="M430 710 V430 A170 155 0 0 1 770 430 V710 Z" fill="hsl(30 20% 97%)"/>
+      <path d="M545 710 V460 A55 60 0 0 1 655 460 V710 Z" fill="hsl(30 22% 94%)"/>
+      <g fill="none" stroke="hsl(30 20% 97%)" stroke-width="6">
+        <path d="M340 415 H410 M790 415 H860 M340 485 H410 M790 485 H860 M340 555 H410 M790 555 H860"/>
+      </g>
+      <path d="M195 710 H1005 V760 H195 Z M145 775 H1055 V825 H145 Z" fill="hsl(345 60% 24%)"/>
+      <path d="M95 840 H1105 V890 H95 Z" fill="hsl(38 45% 68%)"/>
+      <path d="M65 110 H335 M65 110 V380 M1135 110 H865 M1135 110 V380" fill="none" stroke="hsl(345 60% 24%)" stroke-width="4"/>
+</svg>

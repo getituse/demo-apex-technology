@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title description">
+  <title id="title">Apex — demo brand mark</title>
+  <desc id="description">Original demo artwork for a fictional organisation. Not a photograph of real premises, people or an accreditation. Replace with approved customer artwork before launch.</desc>
+  <rect width="64" height="64" rx="8" fill="hsl(345 60% 24%)"/><g fill="none" stroke="hsl(30 30% 96%)" stroke-width="4" stroke-linecap="square">
+      <path d="M14 49 L32 15 L50 49 M23 36 H41 M26 49 L32 38 L38 49"/>
+    </g>
+</svg>
