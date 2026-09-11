@@ -11,9 +11,9 @@ export function createDemoMedia(
   return {
     gallery: catalogue.gallery.map((subject, index) => ({
       id: `illustration-${index + 1}`,
-      album: "Original demonstration illustrations",
+      album: "Campus & Engineering Studios",
       image: galleryIllustration(`${base}/images`, index + 1),
-      caption: `${subject} — fictional scene illustrated for this demo`,
+      caption: `${subject} at Apex Institute of Technology`,
     })),
     downloads: catalogue.documents.map((document) => {
       const bytes = documentSizes[document.id];

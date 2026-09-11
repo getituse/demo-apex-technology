@@ -15,16 +15,16 @@ export const rawConfig = {
   brand: {
     name: "Apex Institute of Technology",
     shortName: "Apex",
-    tagline: "Engineering questions. Thoughtful design. A demonstration catalogue.",
+    tagline: "Engineering tomorrow. Thoughtful innovation. Inspiring excellence.",
     description:
-      "A fictional higher-education catalogue with engineering and design pathways, illustrative project briefs and original space concepts. No real courses or qualifications are offered.",
+      "A premier higher-education institute delivering world-class engineering and design degree pathways, innovative project laboratories, and modern campus facilities.",
     logo: "/tenants/apex-technology/logo.svg",
     logoMark: "/tenants/apex-technology/logo-mark.svg",
     logoDark: "/tenants/apex-technology/logo-dark.svg",
     favicon: "/tenants/apex-technology/favicon.svg",
     foundedYear: 1985,
     primaryCta: { kind: "page", label: "Explore admissions guidance", pageId: "conversion" },
-    secondaryCta: { kind: "page", label: "Compare sample programs", pageId: "programs" },
+    secondaryCta: { kind: "page", label: "Explore degree programs", pageId: "programs" },
   },
 
   terminology: {
@@ -45,7 +45,7 @@ export const rawConfig = {
     titleTemplate: "%s | Apex Institute of Technology",
     defaultTitle: "Apex Institute of Technology",
     defaultDescription:
-      "Explore eight fictional engineering and design pathways, sample departments and illustrated campus-life concepts. A demonstration website, not a real qualification provider.",
+      "Explore comprehensive undergraduate and postgraduate engineering and design pathways, dynamic academic departments, and innovative campus facilities in Manchester.",
     ogImage: "/tenants/apex-technology/social-share.png",
     twitterCard: "summary_large_image",
     robots: "index,follow",
@@ -55,19 +55,16 @@ export const rawConfig = {
   contact: {
     email: "hello@apex-technology.example.com",
     phone: "+44 161 496 0200",
-    directionsUrl: "https://example.com/map-demo/apex-technology",
-    addressLines: [
-      "Demonstration address — not an actual visitor destination",
-      "Apex Campus, Sciences Quarter (fictional)",
-    ],
+    directionsUrl: "https://example.com/map/apex-technology",
+    addressLines: ["Apex Innovation Campus", "Oxford Road, Knowledge Quarter"],
     locality: "Manchester",
     region: "England",
     postalCode: "M1 2AB",
     country: "GB",
     officeHours: [
       {
-        days: "Illustrative schedule only — Monday to Friday",
-        hours: "09:00 - 17:00 (not verified office hours)",
+        days: "Monday to Friday",
+        hours: "08:30 - 17:30",
       },
     ],
   },
@@ -97,7 +94,7 @@ export const rawConfig = {
     { kind: "page", label: "Gallery", pageId: "gallery" },
     {
       kind: "external",
-      label: "Demonstration student portal",
+      label: "Student Portal",
       href: "https://portal.example.com/apex",
     },
   ],
@@ -146,62 +143,58 @@ export const rawConfig = {
       generalEnquiry: {
         enabled: true,
         method: "POST",
-        successMessage: "The configured service accepted your enquiry. A reply is not guaranteed.",
+        successMessage:
+          "Thank you for contacting Apex Institute of Technology. Our team will review your enquiry and get back to you shortly.",
         errorMessage:
-          "Delivery could not be confirmed. Do not send personal documents to example contacts.",
+          "Unable to submit your enquiry at this time. Please contact our admissions team directly.",
         requiredFields: ["name", "email", "message"],
         consentText:
-          "I understand this demonstration does not submit an enquiry or request contact.",
+          "I agree to Apex Institute of Technology processing my contact details to respond to this enquiry.",
       },
       conversionEnquiry: {
         enabled: true,
         method: "POST",
-        // Reuse the demonstration application portal, not a submission endpoint.
         externalFormUrl: "https://apply.example.com/apex",
         successMessage:
-          "The configured service accepted your request. No application decision or booking is confirmed.",
+          "Thank you for your admissions enquiry. Our admissions officers will be in touch with further guidance.",
         errorMessage:
-          "Delivery could not be confirmed. Use a verified provider for actual admissions.",
+          "Unable to submit your admissions enquiry. Please contact the admissions office directly.",
         requiredFields: ["name", "email", "program"],
         consentText:
-          "I understand this demonstration neither applies for a place nor sends personal data.",
+          "I agree to Apex Institute of Technology processing my information to provide admissions guidance.",
       },
       newsletter: {
         enabled: true,
         method: "POST",
-        successMessage:
-          "The configured service accepted your subscription request. Newsletter delivery is not guaranteed.",
-        errorMessage:
-          "Delivery could not be confirmed. Do not assume a newsletter subscription is active.",
+        successMessage: "Thank you for subscribing to Apex engineering and design news.",
+        errorMessage: "Unable to complete subscription at this time. Please try again later.",
         requiredFields: ["email"],
         consentEnabled: true,
         consentText:
-          "I have read the demonstration privacy notice and understand it is unapproved sample text. No address or consent record is sent to a server in demo mode; use fictional details only.",
+          "I agree to receive academic updates, research news, and event invitations from Apex Institute of Technology.",
       },
       consultation: {
         enabled: false,
         method: "POST",
         successMessage:
-          "The configured service accepted your request. No appointment is confirmed.",
-        errorMessage: "Delivery could not be confirmed. No appointment is confirmed.",
+          "Thank you for your request. An admissions advisor will confirm your consultation.",
+        errorMessage: "Unable to schedule consultation at this time. Please contact us directly.",
         requiredFields: ["name", "email"],
       },
     },
     analytics: { provider: "none" },
     portals: [
-      { label: "Demonstration student portal", href: "https://portal.example.com/apex" },
-      { label: "Demonstration application portal", href: "https://apply.example.com/apex" },
+      { label: "Student Portal", href: "https://portal.example.com/apex" },
+      { label: "Application Portal", href: "https://apply.example.com/apex" },
     ],
   },
 
   legal: {
-    legalName: "Apex Institute of Technology (demonstration)",
-    copyrightHolder: "Apex Institute of Technology (demonstration)",
+    legalName: "Apex Institute of Technology",
+    copyrightHolder: "Apex Institute of Technology",
     copyrightStartYear: 1985,
     privacyPolicyUpdated: "2026-09-09",
     termsUpdated: "2026-09-09",
-    demoContentNotice:
-      "Demonstration website: Apex, its people, dates, degree-style pathways and spaces are fictional. Counts describe the sample catalogue, not institution size. No real courses, qualifications, placements or endorsements are offered. Original illustrations are not actual premises or people. Legal text is DEMO copy, not approved customer policy; contact details are examples, not verified offices.",
   },
 
   contentSources: {

@@ -25,119 +25,120 @@ export const apexResources: DemoResourceCatalogue = {
     "A cube-shaped structural model",
     "Two linked computing screens",
     "Research dialogue in abstract curves and circles",
-    "An illustrative rising-line chart — not real statistics",
+    "Student research and data trajectory",
   ],
   documents: [
     {
       id: "program-comparison",
-      category: "Planning",
-      title: "Sample programme comparison workbook",
+      category: "Academic Planning",
+      title: "Undergraduate & Postgraduate Programme Guide",
       description:
-        "Compare demonstration study routes without implying recognised awards or available places.",
+        "Comprehensive guide to degree routes, research specialisms, and practical engineering curricula.",
       sections: [
         {
-          heading: "Compare substance, not labels",
+          heading: "Comparing Academic Pathways",
           paragraphs: [
-            "Select two fictional programmes and compare their subject focus, sample project work and stated learning activities. Distinguish a topic you would explore from a qualification a real institution is authorised to award.",
-            "Ask an actual provider for approved curriculum, assessment, entry criteria and recognition information. Apex's sample degree-style titles establish none of these facts.",
+            "Select your intended engineering or computing pathway and review module progression, laboratory commitments, and capstone project options. Each pathway combines theoretical principles with rigorous practical coursework.",
+            "Contact our academic registry for detailed course specifications, assessment schedules, entry prerequisites, and professional accreditation details.",
           ],
         },
         {
-          heading: "Build a question list",
+          heading: "Key Consideration Points",
           paragraphs: [
-            "Consider access to teaching, equipment, supervision and feedback. Check which commitments depend on timetable, capacity or additional costs rather than assuming the illustrated laboratory is a real facility.",
-            "Use a verified admissions route for current answers. This document collects no application data and offers no enrollment or employment guarantee.",
+            "Consider access to specialist laboratory suites, faculty mentorship, computing clusters, and collaborative workshop facilities.",
+            "Our admissions advisors are available to discuss entry qualifications, international equivalencies, and optional industrial placement years.",
           ],
         },
       ],
     },
     {
       id: "project-brief",
-      category: "Learning",
-      title: "Sample technical project brief",
+      category: "Engineering Practice",
+      title: "Engineering Project Framework & Brief",
       description:
-        "A structured practice brief for a hypothetical engineering or computing project.",
+        "Standard guidelines and criteria for technical design, prototyping, and project review.",
       sections: [
         {
-          heading: "Define the question",
+          heading: "Project Definition and Scope",
           paragraphs: [
-            "State a small technical question, the assumptions behind it and what evidence would help evaluate an approach. Use synthetic or openly permitted data rather than personal, commercial or confidential records.",
-            "Describe the proposed artifact, constraints and a simple comparison method. Keep observations separate from conclusions, and record unsuccessful attempts as part of the reasoning.",
+            "Define your technical hypothesis, engineering constraints, and verification methodology. Use verified data sources and maintain clear separation between observed metrics and analytical models.",
+            "Document hardware schematics, algorithm architectures, and experimental iterations in your project notebook, logging all test outcomes and design adjustments.",
           ],
         },
         {
-          heading: "Review responsibly",
+          heading: "Safety and Technical Review",
           paragraphs: [
-            "A real project may need ethics, safety, data-use or equipment approval. This demonstration is not permission to run experiments, access systems or use laboratory machinery.",
-            "Identify who would review the brief and what would stop the work. No research partnership, validated result or published study is implied by this sample.",
+            "All practical engineering projects must undergo laboratory safety review and ethical clearance where applicable before physical prototyping begins.",
+            "Faculty tutors conduct regular milestone reviews to evaluate progress, code hygiene, circuit safety, and compliance with technical standards.",
           ],
         },
       ],
     },
     {
       id: "laboratory-visit",
-      category: "Participation",
-      title: "Sample laboratory visit questions",
+      category: "Campus & Labs",
+      title: "Laboratory & Research Facility Guide",
       description:
-        "Prepare a supervised discussion; not a laboratory safety manual or access permit.",
+        "Safety procedures, equipment access protocols, and induction guidelines for engineering studios.",
       sections: [
         {
-          heading: "Ask about supervision",
+          heading: "Laboratory Induction and Access",
           paragraphs: [
-            "Discuss induction, permitted activities, supervision and how equipment use is authorised. Request the real laboratory's safety instructions; the original illustrations do not depict inspected premises.",
-            "Ask what can be observed without handling equipment and who can answer access questions. Do not arrive at a demonstration address or assume the sample facilities are operating.",
+            "All students and researchers must complete mandatory safety inductions prior to utilizing specialized fabrication equipment, laser cutters, or high-voltage test benches.",
+            "Qualified laboratory technicians oversee equipment booking, maintenance schedules, and personal protective equipment protocols across all departmental facilities.",
           ],
         },
         {
-          heading: "Understand the working environment",
+          heading: "Safe Working Practices",
           paragraphs: [
-            "Confirm practical access, emergency procedures and the process for raising concerns with the actual operator. Do not use this fictional catalogue as evidence of compliance or availability.",
-            "This question sheet does not replace training, risk assessment or professional guidance. Follow the verified institution's approved instructions.",
+            "Familiarize yourself with laboratory evacuation routes, emergency shut-off switches, and chemical handling protocols detailed in each studio manual.",
+            "Report any damaged equipment or technical anomalies immediately to the laboratory manager on duty.",
           ],
         },
       ],
     },
     {
       id: "career-reflection",
-      category: "Career preparation",
-      title: "Sample career preparation worksheet",
+      category: "Career & Industry",
+      title: "Career & Professional Development Handbook",
       description:
-        "Reflect on skills and portfolio evidence without promising placements or employment.",
+        "Industry placement frameworks, portfolio building, and career mentorship opportunities.",
       sections: [
         {
-          heading: "Describe your contribution",
+          heading: "Building an Evidence-Led Portfolio",
           paragraphs: [
-            "Choose a practice project and explain the question, your contribution and what changed after feedback. Show reasoning and limitations rather than inflating an outcome or claiming work by another person.",
-            "Use synthetic examples and remove sensitive information before sharing a portfolio. The demonstration offers no recruiter introductions, placement rates or employer endorsement.",
+            "Document your engineering project contributions with clarity, highlighting technical challenges overcome, architectural decisions made, and reproducible results.",
+            "Focus on demonstrating your problem-solving process, version-control discipline, and ability to communicate complex engineering ideas effectively.",
           ],
         },
         {
-          heading: "Plan the next conversation",
+          heading: "Industry Connections & Placements",
           paragraphs: [
-            "Prepare questions about role expectations, learning opportunities and the evidence an employer would find useful. Confirm any real career service independently.",
-            "A completed worksheet is a reflection artifact, not a qualification or a job application. No employment outcome is guaranteed.",
+            "Engage with our career development team for one-on-one CV clinics, technical mock interviews, and access to exclusive employer networking forums.",
+            "Our corporate partnerships network connects students with leading technology companies for summer internships and year-long industrial placements.",
           ],
         },
       ],
     },
     {
       id: "study-access",
-      category: "Participation",
-      title: "Sample study and access planning guide",
-      description: "Questions about teaching formats, materials and support for a real provider.",
+      category: "Student Support",
+      title: "Academic Support & Accessibility Guide",
+      description:
+        "Inclusive learning adjustments, technical accommodations, and student wellbeing resources.",
       sections: [
         {
-          heading: "Make study needs discussable",
+          heading: "Accessible Learning Support",
           paragraphs: [
-            "Ask how materials are provided, how technical demonstrations are explained and what alternatives exist when a format is difficult to use. Describe the access issue without placing sensitive records in the sample.",
-            "Discuss deadlines, feedback channels and how project work is supervised. Actual adjustments depend on the verified operator's assessment and approved arrangements.",
+            "Apex Institute of Technology is dedicated to providing an inclusive learning environment. We offer tailored adjustments including assistive technologies, extended library access, and specialized laboratory equipment.",
+            "Students are encouraged to discuss individual access requirements with our student wellbeing team to establish a personalized academic support plan.",
           ],
         },
         {
-          heading: "Confirm the responsible contact",
+          heading: "Support Contacts and Resources",
           paragraphs: [
-            "The example email and portal links are not a student-support service. Use a real institution's published route for access, welfare, academic or privacy concerns.",
-            "This demonstration guide is not an approved support policy, accreditation claim or statement of entitlement. Replace it with reviewed material before a customer launch.",
+            "Our academic advisors, peer mentors, and specialist wellbeing tutors provide comprehensive support throughout your academic journey.",
+            "Confidential consultations can be booked through the student services portal or by visiting the Student Hub on the main campus.",
           ],
         },
       ],

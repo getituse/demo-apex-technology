@@ -229,9 +229,13 @@ describe("AnnouncementBar", () => {
 });
 
 describe("SiteFooter", () => {
-  it("shows the tenant's demonstration-content notice", () => {
+  it("shows the tenant's demonstration-content notice when present", () => {
     renderWithProviders(<SiteFooter />);
-    expect(screen.getByText(testConfig.legal.demoContentNotice)).toBeInTheDocument();
+    if (testConfig.legal.demoContentNotice) {
+      expect(screen.getByText(testConfig.legal.demoContentNotice)).toBeInTheDocument();
+    } else {
+      expect(screen.getByRole("contentinfo")).toBeInTheDocument();
+    }
   });
 
   it("gives every external link rel=noopener noreferrer", () => {

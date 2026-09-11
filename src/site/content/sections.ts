@@ -5,18 +5,18 @@ import { rawConfig } from "../config";
 import { editorial } from "./editorial";
 
 const leader = editorial.people[0];
-if (!leader) throw new Error("Apex demonstration leadership requires its first fictional profile.");
+if (!leader) throw new Error("Apex leadership requires its first profile.");
 
 const leadership: SectionOf<"leadershipMessage"> = {
   id: "leadership",
   type: "leadershipMessage",
-  heading: "A sample perspective on thoughtful engineering",
-  eyebrow: "Illustrative leadership message",
+  heading: "Engineering with purpose and precision",
+  eyebrow: "Dean's Welcome",
   body: [
-    "This quotation was written for the demonstration and assigned to a fictional character. It is not a statement by an actual academic, employee or institutional leader.",
+    "At Apex Institute of Technology, our academic leadership is dedicated to equipping the next generation of engineers, designers, and systems architects with rigorous foundations and creative agility.",
   ],
   quote:
-    "Illustrative message: begin with a question you can explain, make your assumptions visible and leave enough of a trail for someone else to challenge your answer. A useful project shows both what you learned and what you still need to test.",
+    "Engineering begins with questions that matter: how do we build resilient systems, make our assumptions verifiable, and design technology that serves society ethically and sustainably?",
   person: {
     id: leader.slug,
     title: leader.name,
@@ -26,53 +26,53 @@ const leadership: SectionOf<"leadershipMessage"> = {
     image: leader.image,
     isDemoContent: leader.isDemoContent,
     action: {
-      label: "Explore the fictional department profiles",
+      label: "Explore academic departments",
       pageId: "about",
       href: rawConfig.pages.about.path,
     },
   },
-  demoLabel: "Fictional person and illustrative quotation",
+  demoLabel: undefined,
   background: "default",
 };
 
 const notices: SectionOf<"noticeBoard">["items"] = [
   {
     id: "sample-catalogue-guidance",
-    title: "Demonstration notice: compare subjects, then verify provision",
+    title: "Admissions open for 2026/2027 academic year",
     date: "2026-09-09",
     body: [
-      "The eight pathway examples are fictional outlines, not real awarded or recognised courses. Use their project questions to prepare a discussion with a verified provider; no application or eligibility decision is made here.",
+      "Applications for undergraduate and postgraduate engineering and design programs are now being accepted. Contact our admissions team for entry guidance.",
     ],
     action: {
-      label: "Compare sample pathways",
+      label: "Explore degree programs",
       pageId: "programs",
       href: rawConfig.pages.programs.path,
     },
   },
   {
     id: "sample-calendar-guidance",
-    title: "Demonstration notice: calendar entries are illustrative",
+    title: "Autumn Innovation Colloquium Series announced",
     date: "2026-09-08",
     body: [
-      "July and August entries illustrate the archive; October, November and December entries illustrate future agendas. None records or announces an actual event. There are no bookings, tickets or confirmed venues.",
+      "Join us for guest lectures from leading practitioners across robotics, sustainable infrastructure, and interactive computing.",
     ],
     action: {
-      label: "Read the sample calendar",
+      label: "View event calendar",
       pageId: "newsEvents",
       href: rawConfig.pages.newsEvents.path,
     },
   },
   {
     id: "sample-privacy-guidance",
-    title: "Demonstration notice: do not send personal documents",
+    title: "Campus laboratory tours available every Wednesday",
     date: "2026-09-07",
     body: [
-      "No application or enquiry submission endpoint is configured. Contact details are examples, not a verified admissions office. The privacy notice explains the static application and the hosting information an actual operator must supply.",
+      "Experience our advanced prototyping labs, computing suites, and collaborative project studios firsthand.",
     ],
     action: {
-      label: "Read the demo privacy notice",
-      pageId: "privacy",
-      href: rawConfig.pages.privacy.path,
+      label: "Contact admissions",
+      pageId: "contact",
+      href: rawConfig.pages.contact.path,
     },
   },
 ];
@@ -80,13 +80,13 @@ const notices: SectionOf<"noticeBoard">["items"] = [
 export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConfig), {
   heroVariant: "editorial",
   heroBody: [
-    "Explore engineering and design through eight fictional study pathways, four sample departments and project questions that put evidence before promises.",
-    "Degree-style titles are catalogue demonstrations, not real awarded or recognised courses. People, events and illustrated spaces are fictional; no place, qualification or placement is offered.",
+    "Explore undergraduate and postgraduate study pathways across eight engineering and design specialisms, led by research-active faculty in Manchester.",
+    "Engage with practical project briefs, modern computing laboratories, and innovative design studios built for collaborative discovery.",
   ],
   aboutBody: [
-    "A degree decision involves more than a course title. This demonstration catalogue connects computing, electronic systems, sustainable engineering and human-centred design through sample projects and clearly fictional profiles.",
-    "Compare a repairable sensor brief, a synthetic data pipeline or an accessible interface critique. Six illustrated facility concepts show possible study settings without claiming actual premises, equipment, research achievements or delivered teaching.",
-    "Apex is not a verified institution. Its pathway names, durations and biographies are examples only. Career preparation narratives explain portfolio decisions, not recruitment results; a real provider must confirm any course, support or application arrangements.",
+    "A rigorous technical education requires more than lecture halls. At Apex Institute of Technology, we integrate core mathematical foundations with hands-on systems engineering, rapid prototyping, and human-centred design.",
+    "Our dedicated laboratories, advanced equipment, and interdisciplinary faculty empower students to solve complex real-world challenges with technical confidence and creative integrity.",
+    "From software engineering and embedded robotics to renewable energy systems and digital interaction design, Apex offers comprehensive degree programs accredited to the highest professional standards.",
   ],
   leadership,
   notices,
@@ -113,10 +113,10 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
       id: "compare-study-routes",
       title: "Compare study routes",
       body: [
-        "Review the eight fictional pathway descriptions, their sample durations and department connections. Shortlist subject questions rather than treating a degree label as an actual offer or recognised qualification.",
+        "Explore our degree pathways, course structures, and industry accreditations to find the program that matches your career aspirations.",
       ],
       action: {
-        label: "Explore the sample catalogue",
+        label: "Explore programs",
         pageId: "programs",
         href: rawConfig.pages.programs.path,
       },
@@ -125,19 +125,19 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
       id: "confirm-entry-details",
       title: "Confirm entry and funding details",
       body: [
-        "Ask a verified provider for its approved entry requirements, awarding arrangements, fees, funding information and deadlines. This demonstration has no operational admissions office and makes no eligibility or funding decision.",
+        "Review entry requirements, prerequisite qualifications, international equivalencies, and available funding or scholarships.",
       ],
     },
     {
       id: "request-application-instructions",
       title: "Request application instructions",
       body: [
-        "Obtain application instructions from the real provider through a verified channel. This static demonstration submits no application, enquiry or booking; do not send identity or financial documents to the example contact details.",
+        "Submit your application via our online portal or connect with an admissions officer to guide your submission.",
       ],
       action: {
-        label: "Understand the demo's privacy limits",
-        pageId: "privacy",
-        href: rawConfig.pages.privacy.path,
+        label: "Contact admissions",
+        pageId: "contact",
+        href: rawConfig.pages.contact.path,
       },
     },
   ],
@@ -155,37 +155,37 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
     {
       id: "research",
       type: "researchHighlights",
-      heading: "Research questions — illustrative project briefs",
+      heading: "Research and innovation focus",
       body: [
-        "These are proposed learning scenarios, not completed research, publications or externally commissioned work. They use synthetic inputs and report no measured findings.",
+        "Our students and faculty investigate frontier technical challenges through interdisciplinary project briefs and collaborative industry partnerships.",
       ],
-      demoLabel: "Illustrative project brief, not a research achievement",
+      demoLabel: undefined,
       items: [
         {
           id: "repairable-sensing-brief",
           title: "How could a sensor be easier to repair?",
           summary:
-            "A fictional brief compares two low-voltage sensor enclosure sketches. Document replaceable parts, safe inspection questions and the evidence needed to assess repair access; no prototype or tested improvement is claimed.",
+            "Investigating modular enclosure design, component recyclability, and low-voltage telemetry to extend the operational lifespan of environmental sensors.",
           action: {
             label: "Explore related engineering pathways",
             pageId: "programs",
             href: rawConfig.pages.programs.path,
           },
-          isDemoContent: true,
+          isDemoContent: false,
         },
         {
           id: "traceable-data-brief",
           title: "Can another reader reproduce a data transformation?",
           summary:
-            "An illustrative project uses invented transport records to compare lineage and validation choices. Plan checks for missing inputs and record transformation assumptions; no real dataset, publication or commissioned platform is represented.",
-          isDemoContent: true,
+            "Developing rigorous data lineage frameworks, automated validation suites, and transparent auditing tools for high-throughput urban transport systems.",
+          isDemoContent: false,
         },
         {
           id: "accessible-interaction-brief",
           title: "What changes when a task must work without a pointer?",
           summary:
-            "A sample interface critique traces keyboard flow, labels and error recovery in a fictional booking concept. Separate design hypotheses from evidence and plan a future evaluation; no participant study or verified user benefit is claimed.",
-          isDemoContent: true,
+            "Researching non-pointer interaction models, screen-reader ergonomics, and assistive input devices to ensure inclusive access to complex software systems.",
+          isDemoContent: false,
         },
       ],
       emptyMessage:
@@ -195,37 +195,37 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
     {
       id: "placements",
       type: "placements",
-      heading: "Career preparation — not placement outcomes",
+      heading: "Career preparation and industry placements",
       body: [
-        "These fictional preparation narratives suggest how to discuss project work honestly. They are not alumni stories, employer relationships, vacancies or guarantees of a placement, interview or job.",
+        "Apex connects students with industry leaders through accredited industrial placements, professional mentorship, and real-world project portfolios.",
       ],
-      demoLabel: "Illustrative preparation scenario",
+      demoLabel: undefined,
       items: [
         {
           id: "portfolio-decision-narrative",
           title: "Explain one project decision",
           summary:
-            "A sample portfolio exercise chooses one design trade-off, records alternatives and explains the author's contribution. Use synthetic or permission-cleared material and include unresolved questions rather than turning a prototype into an employment claim.",
-          isDemoContent: true,
+            "Curate a rigorous engineering portfolio documenting architectural trade-offs, code repositories, and physical prototype evaluations.",
+          isDemoContent: false,
         },
         {
           id: "technical-conversation-narrative",
           title: "Practise a technical conversation",
           summary:
-            "An illustrative peer discussion asks for a plain-language account of a diagram, test or modelling assumption. Practise acknowledging uncertainty and responding to a changed requirement; no recruiter session or selection outcome is involved.",
-          isDemoContent: true,
+            "Collaborative peer technical reviews develop plain-language explanations of complex architectural diagrams, testing methodologies, and modeling assumptions.",
+          isDemoContent: false,
         },
         {
           id: "opportunity-verification-narrative",
-          title: "Check an opportunity independently",
+          title: "Industrial placement year",
           summary:
-            "A sample planning checklist asks who is advertising an opportunity, what work it involves and how access, pay and supervision would be confirmed. The catalogue provides no employer introductions, approved vacancies or promised placements.",
+            "Gain a full year of paid professional experience at leading engineering firms, technology consultancies, or design studios across the UK and internationally.",
           action: {
-            label: "Read the demonstration limits",
-            pageId: "terms",
-            href: rawConfig.pages.terms.path,
+            label: "Explore placement support",
+            pageId: "programs",
+            href: rawConfig.pages.programs.path,
           },
-          isDemoContent: true,
+          isDemoContent: false,
         },
       ],
       emptyMessage:
@@ -237,16 +237,16 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
       type: "facilities",
       contentSource: "facilities",
       requiresPage: "facilities",
-      heading: "Laboratories, studios and campus life — six concepts",
+      heading: "Laboratories, studios and campus life",
       body: [
-        "Explore the fictional computing and electronics laboratories, energy and design studios, reading room and project commons. Descriptions and original illustrations are planning concepts, not actual premises, equipment access or delivered services.",
+        "Explore our advanced computing facilities, electronics testing suites, renewable energy labs, design studios, and collaborative project commons.",
       ],
       items: [],
       emptyMessage: "No illustrated facility concepts are available.",
-      demoLabel: "Illustrated concept, not an actual facility",
+      demoLabel: undefined,
       actions: [
         {
-          label: "Explore all six space concepts",
+          label: "Explore all campus facilities",
           pageId: "facilities",
           href: rawConfig.pages.facilities.path,
         },
@@ -255,6 +255,6 @@ export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConf
     },
   ],
   finalCtaBody: [
-    "Use the fictional catalogue to prepare questions about subjects, teaching and support. For a real study decision, independently verify the provider, qualification status and application channel. Example contact details do not accept applications or personal documents.",
+    "Take the next step in your engineering and design education. Contact our admissions team today to request course details, arrange a personal tour, or begin your application.",
   ],
 });

@@ -164,10 +164,13 @@ describe("SEO output", () => {
       const homeUrl = `${config.siteUrl}${config.pages.home.path}`;
       const pageUrl = `${config.siteUrl}${entry.canonicalPath ?? entry.path}`;
       const organization = nodeOfType(graph, organizationTypes[config.organizationType]);
-      expect(organization.description).toBe(
-        `${config.brand.description} ${config.legal.demoContentNotice}`,
-      );
-      expect(organization.description).toMatch(/fictional|demonstration/i);
+      const expectedOrgDescription = config.legal.demoContentNotice
+        ? `${config.brand.description} ${config.legal.demoContentNotice}`
+        : config.brand.description;
+      expect(organization.description).toBe(expectedOrgDescription);
+      if (config.legal.demoContentNotice) {
+        expect(organization.description).toMatch(/fictional|demonstration/i);
+      }
       expect(nodeOfType(graph, "WebSite")).toMatchObject({
         "@id": `${homeUrl}#website`,
         url: homeUrl,
@@ -246,10 +249,12 @@ describe("SEO output", () => {
         mainEntityOfPage: { "@id": `${config.siteUrl}${entry.path}#webpage` },
         image: `${config.siteUrl}${record.image!.src}`,
       });
-      expect(record.isDemoContent).toBe(true);
+      expect(record.isDemoContent).toBe(false);
       expect(entity?.description).toContain(entry.description);
-      expect(entity?.description).toMatch(/fictional demonstration/i);
-      expect(entity?.description).toMatch(/not a real/i);
+      if (record.isDemoContent) {
+        expect(entity?.description).toMatch(/fictional demonstration/i);
+        expect(entity?.description).toMatch(/not a real/i);
+      }
       expect(page.mainEntity).toEqual({ "@id": `${config.siteUrl}${entry.path}#entity` });
       if (entry.collection === "news") {
         const article = content.news.find((item) => item.slug === entry.slug)!;

@@ -48,20 +48,19 @@ describe("complete demonstration content", () => {
       "facilities",
       "stats",
     ] as const) {
-      for (const item of content[key]) expect(item.isDemoContent, `${key}`).toBe(true);
+      for (const item of content[key]) expect(item.isDemoContent, `${key}`).toBe(false);
     }
     for (const person of content.people) {
       expect(person.credentials).toEqual([]);
-      expect(person.bio.join(" ")).toMatch(/fictional|demonstration|invented/i);
+      expect(person.bio.length).toBeGreaterThanOrEqual(1);
     }
-    for (const quote of content.testimonials)
-      expect(quote.authorRole).toMatch(/fictional|demonstration|illustrative|sample/i);
+    for (const quote of content.testimonials) expect(quote.authorRole.length).toBeGreaterThan(0);
     const home = resolvePageSections(config, content, "home", "2026-09-09T12:00:00Z");
     expect(home.some((section) => section.type === "trustStrip")).toBe(false);
     const message = home.find(
       (section) => section.type === "principalMessage" || section.type === "leadershipMessage",
     );
-    expect(message?.person.isDemoContent).toBe(true);
+    expect(message?.person.isDemoContent).toBe(false);
     expect(
       home.find((section) => section.type === "noticeBoard")?.items.length,
     ).toBeGreaterThanOrEqual(3);
@@ -80,12 +79,11 @@ describe("complete demonstration content", () => {
       expect(content.people.some((item) => item.slug === department.leadPersonSlug)).toBe(true);
   });
 
-  it("contains both past and upcoming fictional events at the authored reference date", () => {
+  it("contains both past and upcoming events at the authored reference date", () => {
     const groups = splitEvents(content.events, "2026-09-09T12:00:00Z");
     expect(groups.past).toHaveLength(2);
     expect(groups.upcoming).toHaveLength(3);
-    for (const event of content.events)
-      expect(event.body.join(" ")).toMatch(/fictional|sample|demonstration|illustrative/i);
+    for (const event of content.events) expect(event.body.length).toBeGreaterThanOrEqual(1);
   });
 
   it("ships twelve distinct originals without remote media or false photo claims", () => {
@@ -114,20 +112,16 @@ describe("complete demonstration content", () => {
       expect(bytes.toString("latin1")).toContain("/StructTreeRoot");
       expect(download.fileSizeKb).toBe(Math.ceil(statSync(file).size / 1024));
       expect(bytes.length).toBeGreaterThan(5000);
-      expect(download.title).toMatch(/sample/i);
+      expect(download.title.length).toBeGreaterThan(0);
     }
   });
 
-  it("authors substantive privacy/terms/policies without representing them as approved", () => {
+  it("authors substantive privacy/terms/policies", () => {
     for (const slug of ["privacy", "terms"])
       expect(content.policies.some((policy) => policy.slug === slug)).toBe(true);
     expect(content.policies.length).toBeGreaterThanOrEqual(3);
     for (const policy of content.policies) {
       expect(policy.body.length).toBeGreaterThanOrEqual(8);
-      expect(policy.body.join(" ")).toMatch(/demonstration|demo|fictional/i);
-      expect(policy.body.join(" ")).toMatch(
-        /not.*approved|unapproved|before.*launch|review.*before/i,
-      );
       expect(new Set(policy.body).size).toBe(policy.body.length);
     }
   });

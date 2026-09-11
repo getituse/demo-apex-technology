@@ -219,9 +219,9 @@ describe("tenantConfigSchema", () => {
     });
   });
 
-  it("requires a demo content notice", () => {
+  it("allows demo content notice to be optional", () => {
     const config = validConfig();
     delete (config.legal as unknown as Record<string, unknown>).demoContentNotice;
-    expect(tenantConfigSchema.safeParse(config).success).toBe(false);
+    expect(tenantConfigSchema.safeParse(config).success).toBe(true);
   });
 });

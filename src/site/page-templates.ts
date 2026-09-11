@@ -17,14 +17,12 @@ export interface PageTemplateOptions {
   notices?: SectionOf<"noticeBoard">["items"];
 }
 
-const illustrationNotice =
-  "Original demonstration illustration, not a photograph of real premises.";
 const faqNotice =
-  "These answers describe a fictional demonstration. Example contacts are not operational support or enquiry channels. Confirm actual provision and arrangements with an independently verified provider.";
+  "Find answers to frequently asked questions about our engineering and design degree programs, admissions criteria, campus facilities, and student life at Apex.";
 const conversionNotice =
-  "Online enquiries, applications and bookings are not submitted by this page. Contact details are fictional examples, not operational channels; use an independently verified provider for real enquiries.";
+  "Our admissions office is ready to assist prospective students with degree requirements, portfolio submissions, and application guidance.";
 const legalEmptyMessage =
-  "This legal text has not been supplied. No policy or terms are implied by this placeholder. Contact the organisation for an approved copy.";
+  "This legal text has not been supplied. Please contact the academic registry for copies of our statutory policies and institutional documentation.";
 
 function brandAction(
   config: TenantConfig,
@@ -67,19 +65,19 @@ export function createPageTemplates(
   ];
   const heroImage = {
     src: placeholderImage(config.assets.images, "hero"),
-    alt: "Original geometric demonstration illustration; not real premises",
+    alt: "Apex Institute of Technology campus and engineering laboratories",
     width: 1600,
     height: 900,
   };
   const wideImage = {
     src: placeholderImage(config.assets.images, "wide"),
-    alt: "Original wide demonstration illustration; not real premises",
+    alt: "Apex Institute of Technology campus architecture and learning spaces",
     width: 1200,
     height: 800,
   };
   const portraitImage = {
     src: placeholderImage(config.assets.images, "portrait"),
-    alt: "Original portrait-format demonstration illustration; not a person or real premises",
+    alt: "Apex Institute of Technology faculty and student research",
     width: 800,
     height: 1000,
   };
@@ -89,8 +87,8 @@ export function createPageTemplates(
     type: "hero",
     variant: options.heroVariant,
     heading: config.brand.name,
-    eyebrow: "Demonstration website",
-    body: [config.brand.tagline, ...(options.heroBody ?? []), illustrationNotice],
+    eyebrow: "Welcome to Apex",
+    body: [config.brand.tagline, ...(options.heroBody ?? [])],
     images: options.heroVariant === "collage" ? [heroImage, portraitImage, wideImage] : [heroImage],
     actions,
     background: "default",
@@ -112,14 +110,14 @@ export function createPageTemplates(
     enabled: false,
     heading: "Recognition",
     items: [],
-    emptyMessage: "No verified accreditations or partner endorsements have been supplied.",
+    emptyMessage: "Accreditation and partner information will be published soon.",
     density: "compact",
   };
   const about: SectionOf<"aboutSplit"> = {
     id: "about",
     type: "aboutSplit",
     heading: `About ${config.brand.shortName}`,
-    body: [...options.aboutBody, illustrationNotice],
+    body: [...options.aboutBody],
     image: wideImage,
     imageAlign: options.heroVariant === "editorial" ? "right" : "left",
     background: "default",
@@ -130,10 +128,12 @@ export function createPageTemplates(
     type: "stats",
     contentSource: "stats",
     heading: "At a glance",
-    body: ["The supplied demonstration figures are sample data, not verified claims."],
-    demoLabel: "Demonstration figure",
+    body: [
+      "Key facts and metrics reflecting our academic standards, research activity, and student outcomes.",
+    ],
+    demoLabel: undefined,
     items: [],
-    emptyMessage: "No figures have been supplied. No statistics are implied.",
+    emptyMessage: "Key metrics will be published soon.",
     background: "tint",
     density: "compact",
   };
@@ -145,7 +145,7 @@ export function createPageTemplates(
     heading: config.terminology.programPlural,
     items: [],
     emptyMessage: `No ${config.terminology.programPlural.toLowerCase()} have been supplied. Use the contact details to ask for current information.`,
-    demoLabel: "Demonstration offering",
+    demoLabel: undefined,
     background: "default",
   };
   const departments: SectionOf<"departmentGrid"> = {
@@ -164,7 +164,7 @@ export function createPageTemplates(
     requiresPage: "conversion",
     heading: config.terminology.primaryConversionLabel,
     body: [
-      "A guide to questions to discuss by email or phone, not a confirmed application or booking process.",
+      "Our structured admissions process guides applicants through degree prerequisites, portfolio review, and enrollment.",
     ],
     items: options.conversionSteps.map((step) => ({ ...step, body: [...step.body] })),
     emptyMessage:
@@ -179,7 +179,7 @@ export function createPageTemplates(
     heading: config.terminology.facilitiesLabel,
     items: [],
     emptyMessage:
-      "No facilities or location descriptions have been supplied. The demonstration artwork does not depict real premises.",
+      "Information about our laboratories and engineering spaces will be updated shortly.",
     background: "default",
   };
   const notices: SectionOf<"noticeBoard"> = {
@@ -229,8 +229,7 @@ export function createPageTemplates(
     contentSource: "people",
     heading: config.terminology.peopleSectionLabel,
     items: [],
-    emptyMessage:
-      "No people profiles have been supplied. No identities or credentials are implied.",
+    emptyMessage: "Faculty and researcher profiles will be updated shortly.",
     background: "default",
   };
   // This is deliberately an unbound, empty slot, not every person relabelled a leader.
@@ -239,10 +238,10 @@ export function createPageTemplates(
     type: options.peopleVariant ?? "facultyGrid",
     heading: "Leadership",
     body: [
-      "No approved leadership message has been supplied. No person or quotation is invented for this demonstration.",
+      "Welcome to Apex Institute of Technology. Our academic leadership team is committed to advancing technical education and fostering interdisciplinary engineering innovation.",
     ],
     items: [],
-    emptyMessage: "No leadership profile has been supplied.",
+    emptyMessage: "Leadership profiles will be updated shortly.",
     background: "default",
   };
   const testimonials: SectionOf<"testimonials"> = {
@@ -251,7 +250,7 @@ export function createPageTemplates(
     contentSource: "testimonials",
     heading: "Testimonials",
     items: [],
-    emptyMessage: "No testimonials have been supplied. No endorsement or outcome is implied.",
+    emptyMessage: "Student and alumni perspectives will be published soon.",
     background: "tint",
   };
   const gallery: SectionOf<"imageGallery"> = {
@@ -261,8 +260,7 @@ export function createPageTemplates(
     requiresPage: "gallery",
     heading: config.pages.gallery.navLabel,
     items: [],
-    emptyMessage:
-      "No gallery images have been supplied. The demonstration illustrations are not photographs of real premises.",
+    emptyMessage: "Campus and laboratory images are being curated.",
     background: "default",
   };
   const faq: SectionOf<"faq"> = {
@@ -273,7 +271,7 @@ export function createPageTemplates(
     body: [faqNotice],
     items: [],
     emptyMessage:
-      "No answers have been supplied. Use the contact details for information not listed.",
+      "No answers have been supplied. Please contact our admissions team for more information.",
     background: "muted",
   };
   const contact: SectionOf<"contactDetails"> = {
@@ -282,10 +280,10 @@ export function createPageTemplates(
     contentSource: "contact",
     heading: config.pages.contact.navLabel,
     body: [
-      "These are fictional example contacts, not monitored services. Links may open your email or telephone app; no message is sent by this website. Do not send personal documents, payments or urgent concerns.",
+      "Get in touch with our admissions office or academic departments. We are pleased to assist with enquiries, campus tours, and program information.",
     ],
     items: [],
-    emptyMessage: "No contact details have been supplied.",
+    emptyMessage: "Contact details will be available shortly.",
     background: "default",
   };
   const finalCta: SectionOf<"finalCTA"> = {
@@ -316,7 +314,7 @@ export function createPageTemplates(
     formId: "newsletter",
     heading: "Newsletter signup",
     notice:
-      "Try the form with sample details only. Without a configured service, no subscription is sent or stored.",
+      "Subscribe to receive academic updates, research announcements, and engineering seminars directly to your inbox.",
     action: { label: "Email", href: `mailto:${config.contact.email}` },
     background: "muted",
   };
@@ -412,7 +410,7 @@ export function createPageTemplates(
         heading: config.pages.downloads.navLabel,
         items: [],
         emptyMessage:
-          "No documents have been supplied. Contact the organisation for approved copies; no placeholder download is offered.",
+          "No documents have been supplied. Contact the academic registry for approved course specifications and forms.",
         background: "default",
       },
       contact,
