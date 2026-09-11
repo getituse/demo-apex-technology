@@ -97,8 +97,9 @@ export function SiteFooter({ className }: { className?: string }) {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-footer-foreground/20 py-6">
-          {/* Required by the schema: every demonstration tenant states that it is one. */}
-          <p className="text-sm text-footer-foreground/80">{legal.demoContentNotice}</p>
+          {legal.demoContentNotice ? (
+            <p className="text-sm text-footer-foreground/80">{legal.demoContentNotice}</p>
+          ) : null}
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-footer-foreground/80">

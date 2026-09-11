@@ -388,8 +388,8 @@ export const legalSchema = z.object({
   privacyPolicyUpdated: isoDateSchema,
   termsUpdated: isoDateSchema,
   disclaimer: nonEmptyString.optional(),
-  /** Required. Section 17 of the brief forbids unlabelled sample institutions. */
-  demoContentNotice: nonEmptyString,
+  /** Optional demonstration notice. Omitted for live deployments. */
+  demoContentNotice: nonEmptyString.optional(),
 });
 export type LegalConfig = z.infer<typeof legalSchema>;
 
