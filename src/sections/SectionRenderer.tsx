@@ -40,6 +40,7 @@ export function SectionRenderer({ sections, pageHeadingPresent = false }: Sectio
               key={section.id ?? `${fingerprint}-${occurrence}`}
               section={section}
               background={section.background ?? (index % 2 === 0 ? "default" : "tint")}
+              isFirst={index === 0}
             >
               <RegisteredSection section={section} headingLevel={headingLevel} />
             </SectionFrame>

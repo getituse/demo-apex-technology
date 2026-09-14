@@ -86,7 +86,7 @@ export function DetailContent({
         .map((candidate) => candidate.entry)
     : [];
   return (
-    <article className="space-y-8">
+    <article className="space-y-6">
       <p className="max-w-prose text-h3 text-muted-foreground">{entry.description}</p>
       {item.isDemoContent ? (
         <p className="text-sm text-muted-foreground">

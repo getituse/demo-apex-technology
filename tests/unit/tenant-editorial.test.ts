@@ -94,10 +94,9 @@ describe("complete demonstration content", () => {
       expect(item.image.alt).toMatch(/not a photograph/i);
       const bytes = readFileSync(path.join(root, "public", item.image.src.slice(1)));
       hashes.add(createHash("sha256").update(bytes).digest("hex"));
-      const document = new DOMParser().parseFromString(bytes.toString("utf8"), "image/svg+xml");
-      expect(document.querySelector("parsererror,script,image,foreignObject,text")).toBeNull();
-      expect(document.documentElement.getAttribute("viewBox")).toBe("0 0 1200 800");
-      expect(document.querySelector("desc")?.textContent).toMatch(/Original demonstration artwork/);
+      expect(bytes.subarray(0, 4).toString("ascii")).toBe("RIFF");
+      expect(bytes.subarray(8, 12).toString("ascii")).toBe("WEBP");
+      expect(bytes.length).toBeGreaterThan(1000);
     }
     expect(hashes.size).toBe(12);
   });

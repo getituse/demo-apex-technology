@@ -800,7 +800,7 @@ export const editorial = {
     {
       id: "sample-pathways",
       label: "Degree & Research Programs",
-      value: "8+",
+      value: "26+",
       caption:
         "Specialised undergraduate and postgraduate degrees in engineering, computing, and technology.",
       isDemoContent: false,
@@ -808,7 +808,7 @@ export const editorial = {
     {
       id: "sample-departments",
       label: "Academic Departments",
-      value: "4",
+      value: "18",
       caption:
         "Computing, Electronic & Robotic Systems, Sustainable Engineering, Human-Centred Tech.",
       isDemoContent: false,
@@ -816,7 +816,7 @@ export const editorial = {
     {
       id: "sample-space-concepts",
       label: "Specialist Research Labs & Studios",
-      value: "6",
+      value: "32",
       caption:
         "Equipped fabrication spaces, robotics facilities, computing suites, and collaborative commons.",
       isDemoContent: false,

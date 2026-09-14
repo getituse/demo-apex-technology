@@ -90,18 +90,11 @@ export const rawConfig = {
     { kind: "page", label: "Contact", pageId: "contact" },
   ],
 
-  utilityLinks: [
-    { kind: "page", label: "Gallery", pageId: "gallery" },
-    {
-      kind: "external",
-      label: "Student Portal",
-      href: "https://portal.example.com/apex",
-    },
-  ],
+  utilityLinks: [],
 
   features: {
     announcementBar: false,
-    utilityNav: true,
+    utilityNav: false,
     stickyHeader: true,
     mobileContactBar: false,
     darkModeToggle: false,

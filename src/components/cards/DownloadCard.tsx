@@ -2,6 +2,7 @@ import { useId } from "react";
 
 import { Card, CardBody, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
 import { assetUrl } from "@/lib/asset-url";
+import { cn } from "@/lib/cn";
 import type { DownloadCardData } from "@/sections/section-types";
 import type { ContentCardProps } from "./ContentCardFrame";
 import { formatCardDate } from "./card-date";
@@ -17,7 +18,11 @@ const mimeTypes: Record<DownloadCardData["fileType"], string> = {
 
 const sizeFormatter = new Intl.NumberFormat("en-GB", { maximumSignificantDigits: 4 });
 
-export function DownloadCard({ item, headingTag = "h3" }: ContentCardProps<DownloadCardData>) {
+export function DownloadCard({
+  item,
+  headingTag = "h3",
+  className,
+}: ContentCardProps<DownloadCardData>) {
   const titleId = useId();
   const metadataId = useId();
   return (
@@ -25,7 +30,13 @@ export function DownloadCard({ item, headingTag = "h3" }: ContentCardProps<Downl
       as="article"
       aria-labelledby={titleId}
       interactive
-      className="flex h-full min-w-0 flex-col break-words"
+      className={cn(
+        "flex h-full min-w-0 flex-col break-words",
+        "transition-all duration-300 ease-out",
+        "hover:-translate-y-1.5 hover:shadow-lg hover:border-primary/30",
+        "motion-reduce:transform-none motion-reduce:transition-none",
+        className,
+      )}
     >
       <CardHeader>
         <CardTitle id={titleId} as={headingTag}>

@@ -5,6 +5,7 @@ import { ResponsiveImage } from "@/components/media/Image";
 import { Accordion } from "@/components/ui/Accordion";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { RunningNumber } from "@/components/ui/RunningNumber";
 import {
   ContentCardView,
   ProgramCard,
@@ -32,9 +33,12 @@ function Collection({
   headingLevel?: "h1" | "h2" | "h3";
   children: ReactNode;
 }) {
+  const hasIntro = Boolean(
+    section.eyebrow || section.heading || section.body?.length || section.actions?.length,
+  );
   return (
-    <div className="space-y-8">
-      <SectionIntro section={section} headingLevel={headingLevel} />
+    <div className={cn(hasIntro && "space-y-5 md:space-y-6")}>
+      {hasIntro ? <SectionIntro section={section} headingLevel={headingLevel} /> : null}
       {section.items.length ? (
         children
       ) : (
@@ -91,19 +95,28 @@ export function TrustStripSection({ section, headingLevel }: SectionComponentPro
   );
 }
 function Metrics({ section, headingLevel }: SectionComponentProps<"stats" | "results">) {
+  const gridCols =
+    section.variant === "list"
+      ? ""
+      : section.items.length === 2
+        ? "sm:grid-cols-2"
+        : section.items.length === 3
+          ? "sm:grid-cols-2 lg:grid-cols-3"
+          : "sm:grid-cols-2 lg:grid-cols-4";
+
   return (
     <Collection section={section} headingLevel={headingLevel}>
-      <dl
-        className={cn("grid gap-6", section.variant !== "list" && "sm:grid-cols-2 lg:grid-cols-4")}
-      >
+      <dl className={cn("grid gap-6 md:gap-8", gridCols)}>
         {section.items.map((item) => (
           <div
             key={item.id}
             className="min-w-0 border-s-2 border-current ps-5 [overflow-wrap:anywhere]"
           >
-            <dt className="text-base">{item.label}</dt>
-            <dd className="mt-2 font-heading text-h1">{item.value}</dd>
-            {item.caption && <dd className="mt-2 text-sm">{item.caption}</dd>}
+            <dt className="text-base text-foreground">{item.label}</dt>
+            <dd className="mt-2 font-heading text-h1 text-foreground">
+              <RunningNumber value={item.value} />
+            </dd>
+            {item.caption && <dd className="mt-2 text-sm text-muted-foreground">{item.caption}</dd>}
             {item.isDemoContent && (
               <dd className="mt-3">
                 <Badge>{section.demoLabel ?? "Sample content"}</Badge>
@@ -192,7 +205,7 @@ export function NoticeBoardSection({
         )}
       >
         {section.items.map((item) => (
-          <li key={item.id} className="space-y-3 py-6">
+          <li key={item.id} className="space-y-3 py-4 md:py-5">
             <time dateTime={item.date} className="text-sm">
               {item.date}
             </time>
@@ -267,7 +280,7 @@ export function DepartmentGridSection({
 export function NewsGridSection({ section, headingLevel }: SectionComponentProps<"newsGrid">) {
   if (section.listing) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-6">
         <SectionIntro section={section} headingLevel={headingLevel} />
         <PaginatedCollection
           {...section.listing}
@@ -305,7 +318,7 @@ export function NewsGridSection({ section, headingLevel }: SectionComponentProps
 export function EventsGridSection({ section, headingLevel }: SectionComponentProps<"eventsGrid">) {
   if (section.listing) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-6">
         <SectionIntro section={section} headingLevel={headingLevel} />
         <PaginatedCollection
           {...section.listing}
@@ -395,18 +408,87 @@ export function TestimonialsSection({
   section,
   headingLevel,
 }: SectionComponentProps<"testimonials">) {
+  if (!section.items.length) {
+    return (
+      <Collection section={section} headingLevel={headingLevel}>
+        <p className="rounded border border-current p-6">{section.emptyMessage}</p>
+      </Collection>
+    );
+  }
+
+  // Ensure enough items so half-track is always wide enough for a seamless loop on any screen
+  const displayItems =
+    section.items.length < 5
+      ? [...section.items, ...section.items, ...section.items]
+      : section.items;
+
+  const isTint = section.background === "tint";
+  const fadeLeftClass = isTint
+    ? "from-section-tint via-section-tint/80 to-transparent"
+    : "from-background via-background/80 to-transparent";
+  const fadeRightClass = isTint
+    ? "from-section-tint via-section-tint/80 to-transparent"
+    : "from-background via-background/80 to-transparent";
+
   return (
     <Collection section={section} headingLevel={headingLevel}>
-      <Grid section={section}>
-        {section.items.map((item) => (
-          <TestimonialCard
-            key={item.id}
-            item={item}
-            demoLabel={section.demoLabel}
-            headingTag={headingLevel === "h3" ? "h4" : headingLevel === "h1" ? "h2" : "h3"}
-          />
-        ))}
-      </Grid>
+      <div className="relative w-full overflow-hidden py-2">
+        {/* Subtle left & right edge fade gradient masks */}
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-28 bg-gradient-to-r",
+            fadeLeftClass,
+          )}
+        />
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-28 bg-gradient-to-l",
+            fadeRightClass,
+          )}
+        />
+
+        {/* Infinite auto-scrolling marquee track */}
+        <div className="flex w-max shrink-0 animate-marquee">
+          {/* Primary track */}
+          <div className="flex shrink-0 gap-6 pe-6">
+            {displayItems.map((item, index) => (
+              <div
+                key={`${item.id}-${index}`}
+                className="w-[360px] shrink-0 md:w-[400px]"
+              >
+                <TestimonialCard
+                  item={item}
+                  demoLabel={section.demoLabel}
+                  headingTag={headingLevel === "h3" ? "h4" : headingLevel === "h1" ? "h2" : "h3"}
+                  className="h-full"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Duplicate track for seamless infinite marquee loop */}
+          <div
+            aria-hidden="true"
+            className="flex shrink-0 gap-6 pe-6"
+          >
+            {displayItems.map((item, index) => (
+              <div
+                key={`${item.id}-dup-${index}`}
+                className="w-[360px] shrink-0 md:w-[400px]"
+              >
+                <TestimonialCard
+                  item={item}
+                  demoLabel={section.demoLabel}
+                  headingTag={headingLevel === "h3" ? "h4" : headingLevel === "h1" ? "h2" : "h3"}
+                  className="h-full"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </Collection>
   );
 }

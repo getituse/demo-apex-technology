@@ -29,7 +29,7 @@ export function ImageGallerySection({
     return () => observer.disconnect();
   }, []);
   return (
-    <div ref={root} className="space-y-8">
+    <div ref={root} className="space-y-6">
       <SectionIntro section={section} headingLevel={headingLevel} />
       {section.items.length ? (
         <div
@@ -43,7 +43,7 @@ export function ImageGallerySection({
             <figure key={item.id} className="mb-6 break-inside-avoid space-y-3">
               <button
                 type="button"
-                className="block w-full rounded text-left"
+                className="group block w-full overflow-hidden rounded-lg border border-primary/20 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
                 aria-label={`View image: ${item.caption ?? (item.image.alt || item.id)}`}
                 onClick={() => {
                   setEnhanced(true);
@@ -53,7 +53,7 @@ export function ImageGallerySection({
                 <ResponsiveImage
                   {...item.image}
                   aspect={section.variant === "masonry" ? "auto" : "4/3"}
-                  className="rounded"
+                  className="w-full transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </button>
               {item.caption && <figcaption className="text-sm">{item.caption}</figcaption>}

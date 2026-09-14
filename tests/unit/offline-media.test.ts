@@ -177,8 +177,8 @@ describe("offline tenant media", () => {
     const id = config.id;
     for (const name of Object.values(PLACEHOLDER_IMAGE_FILES)) {
       const bytes = readFileSync(assetFile(`${config.assets.images}/${name}`, id));
-      expect(bytes.subarray(0, 3).toString("hex")).toBe("ffd8ff");
-      expect(bytes.subarray(-2).toString("hex")).toBe("ffd9");
+      expect(bytes.subarray(0, 4).toString("ascii")).toBe("RIFF");
+      expect(bytes.subarray(8, 12).toString("ascii")).toBe("WEBP");
       expect(bytes.length).toBeGreaterThan(1000);
       expect(bytes.length).toBeLessThan(500_000);
     }

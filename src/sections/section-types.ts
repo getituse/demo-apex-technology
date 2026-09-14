@@ -200,6 +200,7 @@ export const heroSchema = sectionBaseSchema.extend({
   heading: nonEmptyString,
   variant: z.enum(["split", "editorial", "collage"]).optional(),
   images: z.array(sectionImageSchema).min(1).max(3),
+  keywords: z.array(nonEmptyString).optional(),
 });
 export const quickLinksSchema = collectionBase.extend({
   type: z.literal("quickLinks"),

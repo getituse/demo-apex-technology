@@ -27,9 +27,15 @@ export function PageFrame({
   const config = useTenantConfig();
   const parent = config.pages[entry.pageId];
   const headingHidden = hideHeading && entry.kind === "page";
-  const header = (
-    <header className="space-y-8">
-      {(entry.kind === "detail" || config.features.breadcrumbs) && entry.path !== "/" ? (
+  const hasBreadcrumbs =
+    (entry.kind === "detail" || config.features.breadcrumbs) && entry.path !== "/";
+  const hasHeading = !headingHidden;
+  const hasNotice = Boolean(config.legal.demoContentNotice);
+  const hasHeader = hasBreadcrumbs || hasHeading || hasNotice;
+
+  const header = hasHeader ? (
+    <header className="space-y-4">
+      {hasBreadcrumbs ? (
         <Breadcrumbs
           items={[
             { label: config.pages.home.navLabel, href: config.pages.home.path },
@@ -38,7 +44,7 @@ export function PageFrame({
           ]}
         />
       ) : null}
-      {!headingHidden ? (
+      {hasHeading ? (
         <div className="max-w-prose space-y-4">
           <p className="font-medium text-primary">{config.brand.shortName}</p>
           <h1 className="font-heading text-h1">{entry.title}</h1>
@@ -47,20 +53,25 @@ export function PageFrame({
           ) : null}
         </div>
       ) : null}
-      {config.legal.demoContentNotice ? (
+      {hasNotice ? (
         <Notice title="Demonstration content">{config.legal.demoContentNotice}</Notice>
       ) : null}
     </header>
-  );
+  ) : null;
 
   // SectionRenderer owns the body bands and their containers; do not nest them
   // inside another constrained container. Detail records retain their original width.
   if (fullBleed && entry.kind === "page") {
     return (
       <>
-        <Section density={headingHidden ? "compact" : "default"}>
-          <Container>{header}</Container>
-        </Section>
+        {header ? (
+          <Section
+            density={headingHidden ? "none" : "default"}
+            className={headingHidden ? "pt-3 pb-0 sm:pt-4 sm:pb-1" : undefined}
+          >
+            <Container>{header}</Container>
+          </Section>
+        ) : null}
         {children}
       </>
     );
@@ -68,7 +79,7 @@ export function PageFrame({
 
   return (
     <Section>
-      <Container className="space-y-8">
+      <Container className="space-y-6">
         {header}
         {children}
       </Container>

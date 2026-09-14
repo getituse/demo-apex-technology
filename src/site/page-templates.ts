@@ -4,6 +4,8 @@ import type { SectionAction, SectionConfig, SectionOf } from "../sections/sectio
 
 export interface PageTemplateOptions {
   heroVariant: "split" | "editorial" | "collage";
+  heroEyebrow?: string;
+  heroKeywords?: string[];
   heroBody?: string[];
   aboutBody: string[];
   conversionSteps: SectionOf<"admissionsSteps">["items"];
@@ -15,6 +17,7 @@ export interface PageTemplateOptions {
   finalCtaBody?: string[];
   leadership?: SectionOf<"principalMessage" | "leadershipMessage">;
   notices?: SectionOf<"noticeBoard">["items"];
+  quickLinksEnabled?: boolean;
 }
 
 const faqNotice =
@@ -65,7 +68,7 @@ export function createPageTemplates(
   ];
   const heroImage = {
     src: placeholderImage(config.assets.images, "hero"),
-    alt: "Apex Institute of Technology campus and engineering laboratories",
+    alt: "Apex Institute of Technology robotics and engineering laboratories",
     width: 1600,
     height: 900,
   };
@@ -87,16 +90,18 @@ export function createPageTemplates(
     type: "hero",
     variant: options.heroVariant,
     heading: config.brand.name,
-    eyebrow: "Welcome to Apex",
+    eyebrow: options.heroEyebrow ?? `Welcome to ${config.brand.shortName}`,
     body: [config.brand.tagline, ...(options.heroBody ?? [])],
     images: options.heroVariant === "collage" ? [heroImage, portraitImage, wideImage] : [heroImage],
     actions,
+    keywords: options.heroKeywords,
     background: "default",
-    density: "spacious",
+    density: "regular",
   };
   const quickLinks: SectionOf<"quickLinks"> = {
     id: "quick-links",
     type: "quickLinks",
+    enabled: options.quickLinksEnabled ?? false,
     contentSource: "navigation",
     heading: "Explore",
     items: [],
@@ -121,7 +126,7 @@ export function createPageTemplates(
     image: wideImage,
     imageAlign: options.heroVariant === "editorial" ? "right" : "left",
     background: "default",
-    density: "spacious",
+    density: "regular",
   };
   const stats: SectionOf<"stats"> = {
     id: "stats",
@@ -273,6 +278,7 @@ export function createPageTemplates(
     emptyMessage:
       "No answers have been supplied. Please contact our admissions team for more information.",
     background: "muted",
+    density: "compact",
   };
   const contact: SectionOf<"contactDetails"> = {
     id: "contact-details",
@@ -296,7 +302,7 @@ export function createPageTemplates(
     ],
     actions,
     background: "tint",
-    density: "spacious",
+    density: "compact",
   };
   const enquiry = (
     formId: "generalEnquiry" | "conversionEnquiry" | "consultation",
@@ -358,7 +364,7 @@ export function createPageTemplates(
   return {
     home,
     about: [
-      { ...about, heading: config.pages.about.navLabel },
+      { ...about, heading: `About ${config.brand.shortName}` },
       ...(options.extraAbout ?? []),
       stats,
       people,
@@ -366,7 +372,7 @@ export function createPageTemplates(
       finalCta,
     ],
     programs: [
-      { ...programs, heading: config.pages.programs.navLabel },
+      { ...programs, heading: `Our ${config.terminology.programPlural}` },
       departments,
       faq,
       finalCta,
@@ -381,7 +387,7 @@ export function createPageTemplates(
         background: "muted",
         density: "compact",
       },
-      { ...steps, heading: config.pages.conversion.navLabel },
+      { ...steps, heading: "Application Steps & Guidance" },
       enquiry("conversionEnquiry", config.terminology.primaryConversionLabel),
       contact,
       faq,

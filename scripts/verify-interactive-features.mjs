@@ -499,7 +499,7 @@ async function contactLinks(page, tenant, config) {
   // All are inspected only. No telephone, mail, map, portal or WhatsApp is opened.
 }
 
-async function exerciseForm(page, tenant, mode, form, settings, formId, network) {
+async function exerciseForm(page, tenant, mode, form, settings, formId, network, config) {
   assert(!settings.endpoint, "Refusing to validate a form with a configured endpoint");
   const submit = form.locator('button[type="submit"]');
   await expect(submit).toBeEnabled(); // Hydration must remove the native disabled fieldset.
@@ -563,14 +563,18 @@ async function exerciseForm(page, tenant, mode, form, settings, formId, network)
   }
   await submit.click();
   const status = form.getByRole("status");
-  await expect(status).toHaveText(/demonstration only\. nothing was submitted to a server\./i);
+  if (config.legal.demoContentNotice) {
+    await expect(status).toHaveText(/demonstration only\. nothing was submitted to a server\./i);
+    assert(
+      !(await status.innerText()).includes(settings.successMessage),
+      "Demo must not claim endpoint success",
+    );
+  } else {
+    await expect(status).toHaveText(settings.successMessage);
+  }
   await expect(summary).toHaveCount(0);
   await expect(invalid).toHaveCount(0);
   await expect(submit).toBeEnabled();
-  assert(
-    !(await status.innerText()).includes(settings.successMessage),
-    "Demo must not claim endpoint success",
-  );
   await page.waitForLoadState("networkidle");
   assert.equal(page.url(), location, "Validation must not navigate or serialize values into a URL");
   const calls = network.requests
@@ -613,7 +617,7 @@ async function forms(page, tenant, mode, pageId, config, content, network) {
     }
     enabledCount++;
     assert.notEqual(template.enabled, false, `Enabled form ${id} must be composed into its page`);
-    await exerciseForm(page, tenant, mode, form, settings, id, network);
+    await exerciseForm(page, tenant, mode, form, settings, id, network, config);
     const fallbacks = [
       `mailto:${config.contact.email}`,
       `tel:${config.contact.phone.replace(/[^+\d]/g, "")}`,

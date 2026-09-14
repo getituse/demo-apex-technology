@@ -21,9 +21,12 @@ export { Notice } from "./Notice";
 export { Pagination } from "./Pagination";
 export { Section } from "./Section";
 export { SectionHeader } from "./SectionHeader";
+export { RunningNumber } from "./RunningNumber";
+export type { RunningNumberProps } from "./RunningNumber";
 export { Select } from "./Select";
 export type { SelectOption } from "./Select";
 export { Stat } from "./Stat";
 export { Tabs } from "./Tabs";
 export type { TabItem } from "./Tabs";
 export { Textarea } from "./Textarea";
+

@@ -423,6 +423,8 @@ describe("content-specific rendering", () => {
   it("does not expose disabled pages in the home exploration links", async () => {
     const tenant = structuredClone({ config, content });
     tenant.config.pages.gallery.enabled = false;
+    const quickLinks = tenant.content.pageSections?.home?.find((s) => s.id === "quick-links");
+    if (quickLinks) quickLinks.enabled = true;
     render(page(tenant, "/"));
     const navigation = within(screen.getByRole("region", { name: "Explore" }));
     expect(

@@ -13,9 +13,10 @@ const sectionVariants = cva("w-full", {
       inverted: "bg-footer-background text-footer-foreground",
     },
     density: {
-      compact: "py-8 sm:py-10",
-      default: "py-12 sm:py-16 lg:py-20",
-      spacious: "py-16 sm:py-24 lg:py-32",
+      none: "",
+      compact: "py-6 md:py-8",
+      default: "py-10 md:py-14",
+      spacious: "py-12 md:py-16",
     },
   },
   defaultVariants: { tone: "default", density: "default" },

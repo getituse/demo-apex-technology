@@ -79,6 +79,8 @@ const notices: SectionOf<"noticeBoard">["items"] = [
 
 export const pageSections = createPageTemplates(tenantConfigSchema.parse(rawConfig), {
   heroVariant: "editorial",
+  heroEyebrow: "Welcome to Apex",
+  heroKeywords: ["Robotics", "Computing", "Design", "Innovation"],
   heroBody: [
     "Explore undergraduate and postgraduate study pathways across eight engineering and design specialisms, led by research-active faculty in Manchester.",
     "Engage with practical project briefs, modern computing laboratories, and innovative design studios built for collaborative discovery.",

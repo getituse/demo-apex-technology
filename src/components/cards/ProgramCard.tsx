@@ -1,9 +1,19 @@
+import { cn } from "@/lib/cn";
 import type { ProgramCardData } from "@/sections/section-types";
 import { CardItemList, ContentCardFrame, type ContentCardProps } from "./ContentCardFrame";
 
-export function ProgramCard({ item, ...props }: ContentCardProps<ProgramCardData>) {
+export function ProgramCard({ item, className, ...props }: ContentCardProps<ProgramCardData>) {
   return (
-    <ContentCardFrame item={item} {...props}>
+    <ContentCardFrame
+      item={item}
+      className={cn(
+        "transition-all duration-300 ease-out",
+        "hover:-translate-y-1.5 hover:shadow-lg hover:border-primary/30",
+        "motion-reduce:transform-none motion-reduce:transition-none",
+        className,
+      )}
+      {...props}
+    >
       {item.duration || item.level ? (
         <dl className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {item.duration ? (
@@ -24,3 +34,4 @@ export function ProgramCard({ item, ...props }: ContentCardProps<ProgramCardData
     </ContentCardFrame>
   );
 }
+

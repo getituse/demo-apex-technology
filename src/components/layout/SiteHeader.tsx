@@ -46,24 +46,28 @@ export function SiteHeader({ className }: { className?: string }) {
         )}
       >
         <Container>
-          <div className="flex min-h-16 flex-wrap items-center justify-between gap-x-4 gap-y-2 py-2">
-            <Link
-              to={homePath}
-              className="flex min-h-11 min-w-0 items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring"
-            >
-              <ResponsiveImage
-                src={config.brand.logo}
-                alt={config.brand.name}
-                width={420}
-                height={96}
-                fit="contain"
-                priority
-                className="w-40 max-w-[45vw] sm:w-44"
-              />
-            </Link>
+          <div className="flex min-h-[4.5rem] flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3 sm:min-h-20 sm:py-3.5">
+            <div className="flex min-w-0 flex-wrap items-center gap-x-6 gap-y-2 lg:gap-x-8 xl:gap-x-10">
+              <Link
+                to={homePath}
+                className="flex min-h-11 min-w-0 shrink-0 items-center rounded focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring"
+              >
+                <ResponsiveImage
+                  src={config.brand.logo}
+                  alt={config.brand.name}
+                  width={420}
+                  height={96}
+                  fit="contain"
+                  priority
+                  className="flex h-12 max-h-14 w-auto max-w-[55vw] shrink-0 items-center sm:h-14 sm:max-w-none lg:h-[3.5rem]"
+                  imgClassName="h-full w-auto object-contain"
+                />
+              </Link>
 
-            <div className="flex min-w-0 flex-wrap items-center justify-end gap-2">
               <DesktopNav />
+            </div>
+
+            <div className="flex min-w-0 flex-wrap items-center justify-end gap-3">
               {primaryCta ? (
                 <LinkButton
                   href={primaryCta.href}

@@ -434,7 +434,11 @@ test("general enquiry validates accessibly and never sends or reports fake succe
   await expectPageAssets(page);
   const form = page.getByRole("form", { name: title, exact: true });
   const submit = form.getByRole("button", {
-    name: settings.submitLabel || "Validate demonstration",
+    name:
+      settings.submitLabel ||
+      (settings.endpoint || !config.legal.demoContentNotice
+        ? "Send request"
+        : "Validate demonstration"),
     exact: true,
   });
   await expect(submit).toBeEnabled();
@@ -517,11 +521,17 @@ test("general enquiry validates accessibly and never sends or reports fake succe
     await expect(form.locator('[name="website"]')).toHaveValue("");
     await submit.click();
     await expect(form.getByRole("status")).toHaveText(
-      "Demonstration only. Nothing was submitted to a server.",
+      config.legal.demoContentNotice
+        ? "Demonstration only. Nothing was submitted to a server."
+        : settings.successMessage,
     );
     await expect(form.locator('[aria-invalid="true"]')).toHaveCount(0);
     await expect(form.getByRole("alert")).toHaveCount(0);
-    await expect(form.getByText(settings.successMessage, { exact: true })).toHaveCount(0);
+    if (config.legal.demoContentNotice) {
+      await expect(form.getByText(settings.successMessage, { exact: true })).toHaveCount(0);
+    } else {
+      await expect(form.getByText(settings.successMessage, { exact: true })).toHaveCount(1);
+    }
     await expect(submit).toBeEnabled();
     await expectNoOverflow(page);
   } finally {

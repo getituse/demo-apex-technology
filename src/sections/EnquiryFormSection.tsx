@@ -7,7 +7,7 @@ export function EnquiryFormSection({
   headingLevel,
 }: SectionComponentProps<"enquiryForm">) {
   return (
-    <div className="mx-auto max-w-3xl space-y-8">
+    <div className="mx-auto max-w-3xl space-y-6">
       <SectionIntro section={section} headingLevel={headingLevel} />
       <ConfiguredForm formId={section.formId} label={section.heading} />
     </div>

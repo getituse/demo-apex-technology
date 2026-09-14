@@ -23,10 +23,10 @@ export const TRANSPARENT_PIXEL =
 
 /** Filenames expected inside each tenant's `assets.images` directory. */
 export const PLACEHOLDER_IMAGE_FILES = {
-  hero: "placeholder-hero.jpg",
-  wide: "placeholder-wide.jpg",
-  portrait: "placeholder-portrait.jpg",
-  square: "placeholder-square.jpg",
+  hero: "placeholder-hero.webp",
+  wide: "placeholder-wide.webp",
+  portrait: "placeholder-portrait.webp",
+  square: "placeholder-square.webp",
 } as const;
 
 export type PlaceholderImageKind = keyof typeof PLACEHOLDER_IMAGE_FILES;
@@ -39,7 +39,7 @@ export function placeholderImage(imagesBasePath: string, kind: PlaceholderImageK
   return `${imagesBasePath.replace(/\/$/, "")}/${PLACEHOLDER_IMAGE_FILES[kind]}`;
 }
 
-/** Fixed motifs in gallery-01.svg through gallery-12.svg, in file-number order. */
+/** Fixed motifs in gallery-01.webp through gallery-12.webp, in file-number order. */
 export const GALLERY_ILLUSTRATION_DESCRIPTIONS = [
   "an open book",
   "geometric circle, square and triangle patterns",
@@ -60,7 +60,7 @@ export function galleryIllustration(imagesBasePath: string, number: number) {
   if (!Number.isInteger(number) || number < 1 || number > GALLERY_ILLUSTRATION_DESCRIPTIONS.length)
     throw new Error("Gallery illustration number must be 1–12");
   return {
-    src: `${imagesBasePath.replace(/\/$/, "")}/gallery-${String(number).padStart(2, "0")}.svg`,
+    src: `${imagesBasePath.replace(/\/$/, "")}/gallery-${String(number).padStart(2, "0")}.webp`,
     alt: `Original illustration of ${GALLERY_ILLUSTRATION_DESCRIPTIONS[number - 1]}; not a photograph of real people or premises`,
     width: 1200,
     height: 800,

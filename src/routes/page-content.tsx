@@ -20,7 +20,6 @@ export function CorePage({ referenceTime }: { referenceTime: string }) {
   const activeSections = sections.filter((section) => section.enabled !== false);
   // Match SectionRenderer: a dismissible announcement cannot own the route H1.
   const sectionOwnsHeading =
-    entry.pageId === "home" &&
     activeSections.some((section) => section.heading && section.type !== "announcementBar");
 
   return (

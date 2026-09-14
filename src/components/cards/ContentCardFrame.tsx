@@ -1,4 +1,5 @@
 import { useId, type ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 
 import { ResponsiveImage, type ImageAspect } from "@/components/media/Image";
 import { Badge } from "@/components/ui/Badge";
@@ -9,6 +10,7 @@ export interface ContentCardProps<T> {
   item: T;
   demoLabel?: string;
   headingTag?: "h2" | "h3" | "h4" | "h5";
+  className?: string;
 }
 
 export function DemoContentLabel({ label = "Sample content" }: { label?: string }) {
@@ -59,7 +61,14 @@ export function ContentCardFrame({
       className="flex h-full min-w-0 flex-col break-words"
     >
       {item.image ? (
-        <ResponsiveImage {...item.image} aspect={imageAspect} className="rounded-t" />
+        <div className="overflow-hidden rounded-t">
+          <ResponsiveImage
+            {...item.image}
+            aspect={imageAspect}
+            className="w-full rounded-t"
+            imgClassName="transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:transform-none"
+          />
+        </div>
       ) : null}
       <div className="flex flex-1 flex-col p-5">
         <CardHeader className="gap-2">
@@ -78,17 +87,25 @@ export function ContentCardFrame({
             {isNativeLink ? (
               <a
                 href={action.href}
-                className="font-medium text-primary underline underline-offset-4 after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+                className="inline-flex items-center gap-1.5 font-medium text-primary underline-offset-4 group-hover:underline after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
               >
-                {actionText}
+                <span>{actionText}</span>
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1 motion-reduce:transform-none"
+                  aria-hidden="true"
+                />
               </a>
             ) : (
               <CardLink
                 href={action.href}
                 isExternal={action.href.startsWith("https://")}
-                className="font-medium text-primary underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 font-medium text-primary underline-offset-4 group-hover:underline"
               >
-                {actionText}
+                <span>{actionText}</span>
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1 motion-reduce:transform-none"
+                  aria-hidden="true"
+                />
               </CardLink>
             )}
           </CardFooter>
