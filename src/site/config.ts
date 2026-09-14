@@ -8,7 +8,7 @@ export const rawConfig = {
   id: "apex-technology",
   slug: "apex-technology",
   organizationType: "college",
-  siteUrl: "https://apex-technology.example.com",
+  siteUrl: process.env.SITE_URL || "https://apex-technology.example.com",
   defaultLocale: "en",
   supportedLocales: ["en"],
 
